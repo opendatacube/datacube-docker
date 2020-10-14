@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  dc-index:
+    environment:
+      - AWS_DEFAULT_REGION=us-west-2
+      - AWS_ACCESS_KEY_ID=${ODC_ACCESS_KEY}
+      - AWS_SECRET_ACCESS_KEY=${ODC_SECRET_KEY}
+      - STAC_API_URL=https://earth-search.aws.element84.com/v0/
+    volumes:
+      - ./:/code
+    command: bash -c "pip install --editable /code && tail -f /dev/null"

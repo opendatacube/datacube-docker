@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  # Start docker container for PostgreSQL to mock RDS
+  dc-db:
+    image: postgres:11.5-alpine
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_PASSWORD: opendatacubepassword
+    restart: always
+
+  # Start docker container for Datacube-Index
+  dc-index:
+    build: .
+    environment:
+      - DB_HOSTNAME=dc-db
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=opendatacubepassword
+      - DB_DATABASE=postgres
+      - DB_PORT=5432
+      - AWS_DEFAULT_REGION=ap-southeast-2
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - STAC_API_URL=https://earth-search.aws.element84.com/v0/
+    depends_on:
+      - dc-db
+    command: tail -f /dev/null
