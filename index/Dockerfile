@@ -23,12 +23,6 @@ RUN mkdir -p /conf
 COPY requirements.txt /conf/
 RUN env-build-tool new /conf/requirements.txt ${py_env_path} /wheels
 
-# Set up a nice workdir and fill it full of everything
-ADD . /code
-
-# Install the local package
-RUN /env/bin/pip install --extra-index-url https://packages.dea.ga.gov.au/ /code
-
 FROM opendatacube/geobase:runner
 COPY --from=env_builder /env /env
 
@@ -37,4 +31,7 @@ ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
 # Copy Datacube bootstrapping script
-COPY /assets/bootstrap-odc.sh /code/bootstrap-odc.sh
+ADD ./assets /code
+
+## Do some symlinking
+RUN ln -s /code/bootstrap-odc.sh /usr/bin/env/bootstrap-odc.sh
