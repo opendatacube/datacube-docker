@@ -3,7 +3,7 @@ name : Push Statistician Image
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - statistician/**
 

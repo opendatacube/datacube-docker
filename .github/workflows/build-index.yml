@@ -3,7 +3,7 @@ name : Push Index Image
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - index/**
 
