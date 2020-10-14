@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dev-pod
+  namespace: processing
+  labels:
+    app: odc
+spec:
+  containers:
+  - name: datacube-indexer-dev
+    image: opendatacube/datacube-index:0.0.8
+    env:
+    - name: DB_USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: ows-db
+          key: postgres-username
+    - name: DB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: ows-db
+          key: postgres-password
+    - name: DB_DATABASE
+      value: "africa"
+    - name: DB_HOSTNAME
+      value: "database-write.local"
+    - name: AWS_DEFAULT_REGION
+      valueFrom:
+        secretKeyRef:
+          name: indexing-aws-creds-prod
+          key: AWS_DEFAULT_REGION
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          name: indexing-aws-creds-prod
+          key: AWS_ACCESS_KEY_ID
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: indexing-aws-creds-prod
+          key: AWS_SECRET_ACCESS_KEY
+    command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]

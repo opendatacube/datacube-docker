@@ -1,0 +1,32 @@
+name : Push Index Image
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - index/**
+
+env:
+  IMAGE_NAME: opendatacube/datacube-index"
+
+jobs:
+  push-index:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Get tag for this build if it exists
+      run: |
+        echo ::set-env name=VERSION::$(echo index/version.txt)
+        echo $VERSION
+
+    - name: Build and Push unstable Docker Image from PR / Push to Master
+      uses: whoan/docker-build-with-cache-action@v4
+      with:
+        context: index
+        image_name: ${{ env.IMAGE_NAME }}
+        username: ${{ secrets.DOCKER_USER }}
+        password: ${{ secrets.DOCKER_PASS }}
+        image_tag: latest,${{ env.VERSION }}
