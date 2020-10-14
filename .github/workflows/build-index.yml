@@ -1,4 +1,4 @@
-name : Push Statistician Image
+name : Push Index Image
 
 on:
   push:
@@ -11,7 +11,7 @@ env:
   IMAGE_NAME: opendatacube/datacube-index"
 
 jobs:
-  push-stats:
+  push-index:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
