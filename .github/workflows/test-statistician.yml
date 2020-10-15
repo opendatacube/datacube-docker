@@ -1,0 +1,22 @@
+name : Test Statistician Image
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - statistician/**
+
+env:
+  IMAGE_NAME: opendatacube/datacube-index"
+
+jobs:
+  test-build-statistician:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build image
+      run: |
+        docker build statistician 

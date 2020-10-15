@@ -1,24 +1,22 @@
-name : Build Docker Images
+name : Test Index Image
 
 on:
   pull_request:
     branches:
       - main
+    paths:
+      - index/**
 
 env:
   IMAGE_NAME: opendatacube/datacube-index"
 
 jobs:
-  test-build:
+  test-build-index:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Build Index
+    - name: Build image
       run: |
-        docker build index 
-    
-    - name: Build Statistician
-      run: |
-        docker build statistician
+        docker build index
