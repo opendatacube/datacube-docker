@@ -1,0 +1,29 @@
+name : Statistician
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'statistician/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build Statistician image
+      timeout-minutes: 20
+      shell: bash
+      run: |
+        cd statistician
+        docker-compose build
+
+    - name: Run Dockerized Tests for Statistician
+      timeout-minutes: 20
+      shell: bash
+      run: |
+        cd statistician
+        make test
