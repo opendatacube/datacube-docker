@@ -30,7 +30,7 @@ jobs:
         docker-compose exec -T postgres psql -U postgres -c "SELECT count(*) from agdc.metadata_type"
         docker-compose exec -T postgres psql -U postgres -c "SELECT count(*) from agdc.dataset_type"
         docker-compose down
-  
+
       - name: Run Dockerized Tests for S3
         timeout-minutes: 20
         shell: bash
