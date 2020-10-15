@@ -2,10 +2,8 @@
 datacube[performance,s3]==1.8.3
 aiobotocore[boto3,awscli]==1.1.1
 odc-stats
+# For the s3-find app
+odc-apps-cloud
 # For integration tests
 odc-apps-dc-tools
 sat-search==0.3.0
-# Also for tests, but remove when dep is added to s3-to-dc
-odc-aio
-# Missing dep from stats
-tqdm
