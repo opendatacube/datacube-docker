@@ -8,7 +8,7 @@ on:
       - index/**
 
 jobs:
-  test-build-index:
+  build-test-index:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
