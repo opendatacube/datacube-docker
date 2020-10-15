@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - statistician/**
+      - 'statistician/**'
 
 jobs:
   build-test-statistician:

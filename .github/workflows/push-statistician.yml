@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - statistician/**
+      - 'statistician/**'
 
 env:
   IMAGE_NAME: opendatacube/datacube-statistician

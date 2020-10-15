@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - index/**
+      - 'index/**'
 
 env:
   IMAGE_NAME: opendatacube/datacube-index

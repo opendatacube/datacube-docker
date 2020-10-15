@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - index/**
+      - 'index/**'
 
 jobs:
   build-test-index:
