@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   # Start docker container for PostgreSQL to mock RDS
-  dc-db:
+  postgres:
     image: postgres:11.5-alpine
     ports:
       - "5434:5432"
@@ -11,7 +11,7 @@ services:
     restart: always
 
   # Start docker container for Datacube-Index
-  dc-index:
+  index:
     build: .
     environment:
       - DB_HOSTNAME=dc-db

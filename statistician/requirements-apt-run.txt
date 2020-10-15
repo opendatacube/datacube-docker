@@ -1,1 +1,6 @@
 libtiff-tools
+git
+htop
+tmux
+wget
+curl

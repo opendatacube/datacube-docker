@@ -19,4 +19,6 @@ jobs:
 
     - name: Build image
       run: |
-        docker build statistician 
+        cd statistician
+        docker-compose up -d
+        docker-compose -T stats datacube-stats --help
