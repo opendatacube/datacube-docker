@@ -15,7 +15,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Build images
+    - name: Build Index
       run: |
-        docker build index
-        docker build statistician 
+        docker build index 
+    
+    - name: Build Index
+      run: |
+        docker build statistician
