@@ -21,4 +21,4 @@ jobs:
       run: |
         cd statistician
         docker-compose up -d
-        docker-compose -T stats datacube-stats --help
+        docker-compose -T stats datacube-stats
