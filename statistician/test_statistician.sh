@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
+set -ex
 
 docker-compose up -d
-docker-compose exec -t odc-stats --version
+sleep 5
+
+docker-compose exec -T stats odc-stats --help
 echo "Indexing some data"
 docker-compose exec -T stats datacube system init
 docker-compose exec -T stats datacube system check

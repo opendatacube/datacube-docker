@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Echo lines and fail fast
+set -ex
+
 docker-compose up -d
 docker-compose exec -T index datacube system init
 docker-compose exec -T index datacube system check

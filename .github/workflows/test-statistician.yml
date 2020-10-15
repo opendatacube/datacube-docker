@@ -14,6 +14,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Build Statistician image
+      timeout-minutes: 20
+      shell: bash
+      run: |
+        cd statistician
+        docker-compose build
+
     - name: Run Dockerized Tests for Statistician
       timeout-minutes: 20
       shell: bash
