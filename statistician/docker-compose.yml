@@ -6,7 +6,6 @@ services:
       - POSTGRES_DB=opendatacube
       - POSTGRES_PASSWORD=opendatacubepassword
       - POSTGRES_USER=opendatacube
-
     restart: always
 
   stats:
@@ -18,8 +17,6 @@ services:
       - DB_PASSWORD=opendatacubepassword
       - DB_DATABASE=opendatacube
       - AWS_NO_SIGN_REQUEST=true
-      - STAC_API_URL=https://earth-search.aws.element84.com/v0/
-
     restart: always
     depends_on:
       - postgres

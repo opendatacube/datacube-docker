@@ -1,2 +1,3 @@
-# Datacube-index-docker
-Docker file for Datacube indexing project
+# opendatacube/datacube-index
+
+Dockerfile for use in indexing into the Open Data Cube

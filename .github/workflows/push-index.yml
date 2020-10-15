@@ -8,7 +8,7 @@ on:
       - index/**
 
 env:
-  IMAGE_NAME: opendatacube/datacube-index"
+  IMAGE_NAME: opendatacube/datacube-index
 
 jobs:
   push-index:
