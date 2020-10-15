@@ -7,9 +7,6 @@ on:
     paths:
       - statistician/**
 
-env:
-  IMAGE_NAME: opendatacube/datacube-index"
-
 jobs:
   test-build-statistician:
     runs-on: ubuntu-latest
@@ -17,8 +14,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Build image
+    - name: Run Dockerized Tests for Statistician
+      timeout-minutes: 20
+      shell: bash
       run: |
         cd statistician
-        docker-compose up -d
-        docker-compose exec -T stats datacube-stats --help
+        make test

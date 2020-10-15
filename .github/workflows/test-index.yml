@@ -7,9 +7,6 @@ on:
     paths:
       - index/**
 
-env:
-  IMAGE_NAME: opendatacube/datacube-index"
-
 jobs:
   test-build-index:
     runs-on: ubuntu-latest

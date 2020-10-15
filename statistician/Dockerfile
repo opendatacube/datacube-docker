@@ -17,7 +17,7 @@ COPY --from=env_builder /env /env
 
 ADD requirements-apt-run.txt /tmp/
 RUN apt-get update \
-    && sed 's/#.*//' /tmp/requirements-apt.txt | xargs apt-get install -y \
+    && sed 's/#.*//' /tmp/requirements-apt-run.txt | xargs apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 ENV PATH="/env/bin:${PATH}"
