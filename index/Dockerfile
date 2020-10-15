@@ -30,8 +30,8 @@ ENV PATH="/env/bin:${PATH}"
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
-# Copy Datacube bootstrapping script
+# Copy Datacube bootstrapping and other scripts
 ADD ./assets /code
 
 ## Do some symlinking
-RUN ln -s /code/bootstrap-odc.sh /usr/bin/env/bootstrap-odc.sh
+RUN ln -s /code/bootstrap-odc.sh /usr/local/bin/bootstrap-odc.sh
