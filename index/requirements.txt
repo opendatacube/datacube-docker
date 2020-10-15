@@ -3,17 +3,10 @@
 datacube[performance,s3]==1.8.3
 aiobotocore[boto3,awscli]==1.1.1
 aiohttp==3.6.2
-pandas==1.0.5
-digitalearthau
-thredds-crawler
-wget
-requests
-odc-aws
-odc-aio
-odc-thredds
-odc-apps-cloud
-odc-index
+odc-apps-dc-tools
 # Pinned for Alex to index STAC
 sat-search==0.3.0
-# test requirements, needed until testing is done separately
-pytest
+# Remove when dep is added to s3-to-dc
+odc-aio
+# Required by the bootstrap-odc script
+wget
