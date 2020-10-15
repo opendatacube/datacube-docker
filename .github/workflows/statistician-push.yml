@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'statistician/**'
+      - '.github/workflows/statistician-*'
 
 env:
   IMAGE_NAME: opendatacube/datacube-statistician
@@ -24,7 +25,7 @@ jobs:
     - name: Build and Push unstable Docker Image from PR / Push to Master
       uses: whoan/docker-build-with-cache-action@v4
       with:
-        context: index
+        context: statistician
         image_name: ${{ env.IMAGE_NAME }}
         username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_PASS }}
