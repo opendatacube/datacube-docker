@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'statistician/**'
+      - '.github/workflows/statistician-*'
 
 env:
   IMAGE_NAME: opendatacube/datacube-statistician
