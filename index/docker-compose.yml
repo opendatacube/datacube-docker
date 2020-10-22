@@ -20,6 +20,8 @@ services:
       - DB_DATABASE=postgres
       - DB_PORT=5432
       - AWS_DEFAULT_REGION=ap-southeast-2
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - STAC_API_URL=https://earth-search.aws.element84.com/v0/
     depends_on:
       - postgres
