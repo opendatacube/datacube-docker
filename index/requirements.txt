@@ -3,9 +3,8 @@ aiobotocore[boto3,awscli]==1.1.1
 datacube[performance,s3]==1.8.3
 python-dateutil==2.7.5 # because of sat-search
 odc-apps-dc-tools
+odc-apps-cloud # s3-find
 # Pinned for Alex to index STAC
 sat-search==0.3.0
-# Remove when dep is added to s3-to-dc
-odc-aio
 # Required by the bootstrap-odc script
 wget
