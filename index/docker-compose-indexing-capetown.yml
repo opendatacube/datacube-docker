@@ -12,7 +12,6 @@ services:
 
   # Start docker container for Datacube-Index
   index:
-    # build: .
     image: opendatacube/datacube-index
     environment:
       - DB_HOSTNAME=postgres
