@@ -1,0 +1,4 @@
+postgresql-11
+git
+fish
+wget
