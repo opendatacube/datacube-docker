@@ -3,6 +3,18 @@ FROM opendatacube/geobase:wheels as env_builder
 ARG py_env_path=/env
 
 ENV LC_ALL=C.UTF-8
+
+# Install our requirements
+RUN mkdir -p /conf
+COPY requirements.txt /conf/
+RUN env-build-tool new /conf/requirements.txt ${py_env_path} /wheels
+
+FROM opendatacube/geobase:runner
+COPY --from=env_builder /env /env
+
+ENV PATH="/env/bin:${PATH}"
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Do the apt install process, including more recent Postgres/PostGIS
@@ -17,18 +29,6 @@ ADD requirements-apt.txt /tmp/
 RUN apt-get update \
     && sed 's/#.*//' /tmp/requirements-apt.txt | xargs apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
-
-# Install our requirements
-RUN mkdir -p /conf
-COPY requirements.txt /conf/
-RUN env-build-tool new /conf/requirements.txt ${py_env_path} /wheels
-
-FROM opendatacube/geobase:runner
-COPY --from=env_builder /env /env
-
-ENV PATH="/env/bin:${PATH}"
-ENV LC_ALL=C.UTF-8
-ENV LANG=C.UTF-8
 
 # Copy Datacube bootstrapping and other scripts
 ADD ./assets /code
