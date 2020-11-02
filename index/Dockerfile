@@ -25,9 +25,9 @@ RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
     && echo "deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main" \
     >> /etc/apt/sources.list.d/postgresql.list
 
-ADD requirements-apt.txt /tmp/
+ADD requirements-apt-run.txt /tmp/
 RUN apt-get update \
-    && sed 's/#.*//' /tmp/requirements-apt.txt | xargs apt-get install -y \
+    && sed 's/#.*//' /tmp/requirements-apt-run.txt | xargs apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy Datacube bootstrapping and other scripts
