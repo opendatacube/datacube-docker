@@ -6,8 +6,9 @@ ENV LC_ALL=C.UTF-8
 
 # Install our requirements
 RUN mkdir -p /conf
-COPY requirements.txt /conf/
-RUN env-build-tool new /conf/requirements.txt ${py_env_path} /wheels
+COPY requirements.txt version.txt /conf/
+RUN cat /conf/version.txt \
+    && env-build-tool new /conf/requirements.txt ${py_env_path} /wheels
 
 FROM opendatacube/geobase:runner
 COPY --from=env_builder /env /env
