@@ -18,10 +18,10 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LC_ALL=C.UTF-8 \
     LANG=C.UTF-8
 
-COPY --from=env_builder /env /env
-
 # Add in the dask configuration
-COPY distributed.yaml /root/.config/dask/distributed.yaml 
+COPY distributed.yaml /etc/dask/distributed.yaml 
+
+COPY --from=env_builder /env /env
 
 ADD requirements-apt-run.txt /tmp/
 RUN apt-get update \
