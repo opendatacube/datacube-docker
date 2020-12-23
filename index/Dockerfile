@@ -4,19 +4,21 @@ ARG py_env_path=/env
 
 ENV LC_ALL=C.UTF-8
 
-# Install our requirements
+# Install our Python requirements
 RUN mkdir -p /conf
 COPY requirements.txt version.txt /conf/
 RUN cat /conf/version.txt \
     && env-build-tool new /conf/requirements.txt ${py_env_path} /wheels
 
+# Below is the actual image that does the running
 FROM opendatacube/geobase:runner
-COPY --from=env_builder /env /env
 
-ENV PATH="/env/bin:${PATH}"
-ENV LC_ALL=C.UTF-8
-ENV LANG=C.UTF-8
-ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive \
+    PATH="/env/bin:${PATH}" \
+    LC_ALL=C.UTF-8 \
+    LANG=C.UTF-8
+
+COPY --from=env_builder /env /env
 
 # Do the apt install process, including more recent Postgres/PostGIS
 RUN apt-get update && apt-get install -y wget gnupg \
