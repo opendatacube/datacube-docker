@@ -4,3 +4,4 @@ htop
 tmux
 wget
 curl
+nano
