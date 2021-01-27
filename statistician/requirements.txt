@@ -1,9 +1,22 @@
 --extra-index-url https://packages.dea.ga.gov.au/
-datacube[performance,s3]==1.8.3
-aiobotocore[boto3,awscli]==1.1.1
+datacube[performance,s3]
 odc-stats
 # For the s3-find app
 odc-apps-cloud
 # For integration tests
 odc-apps-dc-tools
-sat-search==0.3.0
+sat-search
+
+--no-binary=rasterio\
+,Shapely\
+,netCDF4\
+,pyproj\
+,hdstats\
+,lmdb\
+,lxml\
+,numexpr\
+,pyzmq\
+,msgpack\
+,ruamel.yaml.clib\
+,zstandard\
+
