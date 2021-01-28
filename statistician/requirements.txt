@@ -6,6 +6,8 @@ odc-apps-cloud
 # For integration tests
 odc-apps-dc-tools
 sat-search
+# For user convenience
+awscli
 
 --no-binary=rasterio\
 ,Shapely\
