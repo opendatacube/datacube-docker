@@ -32,8 +32,8 @@ RUN apt-get update \
     && sed 's/#.*//' /tmp/apt-run.txt | xargs apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
+WORKDIR /tmp
 COPY --from=env_builder $py_env_path $py_env_path
 
 RUN env && echo $PATH && pip freeze && pip check
 RUN odc-stats --help
-WORKDIR /tmp
