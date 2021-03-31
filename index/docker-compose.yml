@@ -3,7 +3,7 @@ version: '3.7'
 services:
   # Start docker container for PostgreSQL to mock RDS
   postgres:
-    image: postgres:11.5-alpine
+    image: postgres:12.6-alpine
     ports:
       - "5434:5432"
     environment:

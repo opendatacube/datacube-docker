@@ -1,4 +1,4 @@
-postgresql-11
+postgresql-12
 git
 fish
 wget
