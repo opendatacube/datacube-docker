@@ -1,4 +1,4 @@
-name : Index
+name : Index Test
 
 on:
   pull_request:
