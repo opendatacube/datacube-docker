@@ -1,5 +1,5 @@
 --extra-index-url https://packages.dea.ga.gov.au/
-datacube[performance,s3]==1.8.4.dev52+g07bc51a5
+datacube[performance,s3]==1.8.4.dev70+g365b6b82
 odc-stats
 hdstats==0.1.8.post1
 # For the s3-find app
