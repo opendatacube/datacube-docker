@@ -9,6 +9,7 @@ odc-apps-dc-tools
 sat-search
 # For user convenience
 awscli
+rio-cogeo
 
 --no-binary=rasterio\
 ,Shapely\
