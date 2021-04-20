@@ -1,5 +1,5 @@
 --extra-index-url https://packages.dea.ga.gov.au/
-datacube[performance,s3]==1.8.4.dev70+g365b6b82
+datacube[performance,s3]==1.8.4.dev71+gd5db7cd8
 odc-stats
 hdstats==0.1.8.post1
 # For the s3-find app
@@ -22,5 +22,6 @@ rio-cogeo
 ,pyzmq\
 ,msgpack\
 ,ruamel.yaml.clib\
+,tornado\
 ,zstandard\
 
