@@ -21,10 +21,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
 # Do the apt install process, including more recent Postgres/PostGIS
 RUN apt-get update && apt-get install -y wget gnupg \
     && rm -rf /var/lib/apt/lists/*
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
-    apt-key add - \
-    && echo "deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main" \
-    >> /etc/apt/sources.list.d/postgresql.list
 
 ADD requirements-apt-run.txt /tmp/
 RUN apt-get update \
