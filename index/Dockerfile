@@ -1,24 +1,22 @@
-FROM opendatacube/geobase:wheels as env_builder
-
+ARG V_BASE=3.3.0
 ARG py_env_path=/env
 
+FROM opendatacube/geobase-builder:${V_BASE} as env_builder
 ENV LC_ALL=C.UTF-8
-
 # Install our Python requirements
-RUN mkdir -p /conf
-COPY requirements.txt version.txt /conf/
+COPY requirements.txt constraints.txt version.txt /conf/
+
+ARG py_env_path
 RUN cat /conf/version.txt \
-    && env-build-tool new /conf/requirements.txt ${py_env_path} /wheels
+    && env-build-tool new /conf/requirements.txt /conf/constraints.txt ${py_env_path}
 
 # Below is the actual image that does the running
-FROM opendatacube/geobase:runner
+FROM opendatacube/geobase-runner:${V_BASE}
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PATH="/env/bin:${PATH}" \
     LC_ALL=C.UTF-8 \
     LANG=C.UTF-8
-
-COPY --from=env_builder /env /env
 
 # Do the apt install process, including more recent Postgres/PostGIS
 RUN apt-get update && apt-get install -y wget gnupg \
@@ -32,6 +30,9 @@ ADD requirements-apt-run.txt /tmp/
 RUN apt-get update \
     && sed 's/#.*//' /tmp/requirements-apt-run.txt | xargs apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
+
+ARG py_env_path
+COPY --from=env_builder /env /env
 
 # Copy Datacube bootstrapping and other scripts
 ADD ./assets /code
