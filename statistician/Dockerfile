@@ -1,22 +1,21 @@
 ARG py_env_path=/env
+ARG V_BASE=3.3.0
 
-FROM opendatacube/geobase:builder-3.0.4 as env_builder
+FROM opendatacube/geobase-builder:${V_BASE} as env_builder
 ARG py_env_path
 
 ENV LC_ALL=C.UTF-8
 
 # Install our Python requirements
 RUN mkdir -p /conf
-COPY requirements.txt constraints.txt version.txt /conf/
+COPY requirements.txt constraints.txt nobinary-extra.txt version.txt /conf/
 RUN cat /conf/version.txt \
-  && python3 -m venv ${py_env_path} \
-  && ${py_env_path}/bin/python -m pip install -U pip wheel setuptools -c /conf/constraints.txt \
-  && ${py_env_path}/bin/python -m pip install -r /conf/requirements.txt -c /conf/constraints.txt \
+  && NOBINARY=/conf/nobinary-extra.txt env-build-tool new /conf/requirements.txt /conf/constraints.txt ${py_env_path} \
   && rm -rf /root/.cache/pip \
   && echo done
 
 # Below is the actual image that does the running
-FROM opendatacube/geobase:runner-3.0.4
+FROM opendatacube/geobase-runner:${V_BASE}
 ARG py_env_path
 
 ENV DEBIAN_FRONTEND=noninteractive \

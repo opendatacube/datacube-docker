@@ -1,5 +1,6 @@
 --extra-index-url https://packages.dea.ga.gov.au/
-datacube[performance,s3]==1.8.4.dev71+gd5db7cd8
+
+datacube[performance,s3]==1.8.4.dev81+g80d466a2
 odc-stats
 hdstats==0.1.8.post1
 # For the s3-find app
@@ -10,18 +11,3 @@ sat-search
 # For user convenience
 awscli
 rio-cogeo
-
---no-binary=rasterio\
-,Shapely\
-,netCDF4\
-,pyproj\
-,hdstats\
-,lmdb\
-,lxml\
-,numexpr\
-,pyzmq\
-,msgpack\
-,ruamel.yaml.clib\
-,tornado\
-,zstandard\
-
