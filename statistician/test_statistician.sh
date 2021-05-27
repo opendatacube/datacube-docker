@@ -13,5 +13,5 @@ docker-compose exec -T stats stac-to-dc --bbox='4,5,5,6' --collections='sentinel
 echo "Checking save tasks"
 docker-compose exec -T stats odc-stats save-tasks --grid africa-20 --year 2019 --overwrite s2_l2a test-run.db
 echo "Checking a job run"
-docker-compose exec -T stats odc-stats run --plugin pq --location file:///tmp ./test-run.db 0
+docker-compose exec -T stats odc-stats run  --threads=1 --plugin pq --location file:///tmp ./test-run.db 0
 docker-compose exec -T stats ls /tmp
