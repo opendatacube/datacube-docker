@@ -2,37 +2,42 @@ ARG py_env_path=/env
 ARG V_BASE=3.3.0
 
 FROM opendatacube/geobase-builder:${V_BASE} as env_builder
-ARG py_env_path
-
 ENV LC_ALL=C.UTF-8
 
 # Install our Python requirements
-RUN mkdir -p /conf
-COPY requirements.txt constraints.txt nobinary-extra.txt version.txt /conf/
+COPY requirements.txt constraints.txt nobinary.txt version.txt /conf/
+ARG py_env_path
 RUN cat /conf/version.txt \
-  && NOBINARY=/conf/nobinary-extra.txt env-build-tool new /conf/requirements.txt /conf/constraints.txt ${py_env_path} \
+  && NOBINARY=/conf/nobinary.txt env-build-tool new /conf/requirements.txt /conf/constraints.txt ${py_env_path} \
   && rm -rf /root/.cache/pip \
   && echo done
 
 # Below is the actual image that does the running
 FROM opendatacube/geobase-runner:${V_BASE}
-ARG py_env_path
 
 ENV DEBIAN_FRONTEND=noninteractive \
-    PATH="${py_env_path}/bin:${PATH}" \
     LC_ALL=C.UTF-8 \
     LANG=C.UTF-8
 
 # Add in the dask configuration
 COPY distributed.yaml /etc/dask/distributed.yaml
 
-ADD apt-run.txt /tmp/
 RUN apt-get update \
-    && sed 's/#.*//' /tmp/apt-run.txt | xargs apt-get install -y \
+    && apt-get install -y \
+         libtiff-tools \
+         git \
+         htop \
+         tmux \
+         wget \
+         curl \
+         nano \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /tmp
+
+ARG py_env_path
 COPY --from=env_builder $py_env_path $py_env_path
+ENV PATH="${py_env_path}/bin:${PATH}"
 
 RUN env && echo $PATH && pip freeze && pip check
 RUN odc-stats --help
