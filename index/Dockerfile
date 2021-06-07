@@ -42,6 +42,8 @@ ADD ./assets /code
 
 # Allow non-root user to read/write the python env and code dir
 RUN chown -R odc:odc /env /code
+WORKDIR /home/odc
+USER odc
 
 ## Do some symlinking
 RUN ln -s /code/bootstrap-odc.sh /usr/local/bin/bootstrap-odc.sh
