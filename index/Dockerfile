@@ -27,11 +27,24 @@ RUN apt-get update \
     && sed 's/#.*//' /tmp/requirements-apt-run.txt | xargs apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
+RUN groupadd --gid 1000 odc \
+  && useradd --gid 1000 --uid 1000 --create-home --shell /bin/bash -N odc \
+  && adduser odc users \
+  && install -d -o odc -g odc /env \
+  && install -d -o odc -g odc /code \
+  && true
+
 ARG py_env_path
 COPY --from=env_builder /env /env
 
 # Copy Datacube bootstrapping and other scripts
 ADD ./assets /code
 
+# Allow non-root user to read/write the python env and code dir
+RUN chown -R odc:odc /env /code
+
 ## Do some symlinking
 RUN ln -s /code/bootstrap-odc.sh /usr/local/bin/bootstrap-odc.sh
+
+WORKDIR /home/odc
+USER odc
