@@ -16,8 +16,7 @@ metadata_catalog=$2
 datacube system init --no-default-types --no-init-users
 # Created using : datacube metadata list | awk '{print $1}' | xargs datacube metadata show
 datacube metadata add "$metadata_catalog"
-python -m wget "$product_catalog" -o product_list.csv
-tail -n+2 product_list.csv | awk -F, '{print $2}' | xargs datacube -v product add
+dc-sync-products "$product_catalog"
 
 # Clean up
 rm product_list.csv

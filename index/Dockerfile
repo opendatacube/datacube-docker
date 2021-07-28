@@ -19,10 +19,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LC_ALL=C.UTF-8 \
     LANG=C.UTF-8
 
-# Do the apt install process, including more recent Postgres/PostGIS
-RUN apt-get update && apt-get install -y wget gnupg \
-    && rm -rf /var/lib/apt/lists/*
-
 ADD requirements-apt-run.txt /tmp/
 RUN apt-get update \
     && sed 's/#.*//' /tmp/requirements-apt-run.txt | xargs apt-get install -y \
@@ -40,6 +36,11 @@ COPY --from=env_builder /env /env
 
 # Copy Datacube bootstrapping and other scripts
 ADD ./assets /code
+RUN wget -q https://github.com/opendatacube/datacube-dataset-config/archive/refs/heads/main.zip \
+    -O /tmp/datacube-dataset-config.zip \
+    && unzip -q /tmp/datacube-dataset-config.zip -d /tmp \
+    && cp -r /tmp/datacube-dataset-config-main/odc-product-delete /code/odc-product-delete \
+    && rm -r /tmp/datacube-dataset-config-main /tmp/datacube-dataset-config.zip
 
 # Allow non-root user to read/write the python env and code dir
 RUN chown -R odc:odc /env /code
