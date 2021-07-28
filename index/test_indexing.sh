@@ -16,7 +16,7 @@ docker-compose exec -T index datacube product add https://raw.githubusercontent.
 docker-compose exec -T index s3-to-dc --no-sign-request --stac "s3://sentinel-cogs/sentinel-s2-l2a-cogs/2020/S2A_32NNF_20200127_0_L2A/*.json" s2_l2a
 echo "Checking STAC API indexing"
 # Note, temporarily allowing this to fail. 
-docker-compose exec -T index stac-to-dc --bbox='5,15,10,20' --limit=10 --collections='sentinel-s2-l2a-cogs' --datetime='2020-08-01/2020-08-31' s2_l2a || true
+docker-compose exec -T index stac-to-dc --bbox='5,15,10,20' --limit=10 --collections='sentinel-s2-l2a-cogs' --datetime='2020-08-01/2020-08-31'
 echo "Checking Indexed Datasets Count (including STAC)"
 docker-compose exec -T postgres psql -U postgres -c "SELECT count(*) from agdc.dataset"
 docker-compose down
