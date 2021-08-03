@@ -36,6 +36,7 @@ jobs:
         make test-indexing
 
   push:
+    if: github.ref == 'refs/heads/main'
     needs: test
     runs-on: ubuntu-latest
     steps:
