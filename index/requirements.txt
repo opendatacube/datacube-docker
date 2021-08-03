@@ -7,3 +7,5 @@ odc-apps-cloud # s3-find
 sat-search==0.3.0
 # Required by the bootstrap-odc script
 wget
+# Useful package for comparing s3 inventory listings
+dawg
