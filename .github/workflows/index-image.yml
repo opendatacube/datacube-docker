@@ -1,6 +1,12 @@
-name : Index Push
+name : Index Test and Push
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'index/**'
+      - '.github/workflows/index-*'
   push:
     branches:
       - main
@@ -8,11 +14,30 @@ on:
       - 'index/**'
       - '.github/workflows/index-*'
 
-env:
-  IMAGE_NAME: opendatacube/datacube-index
-
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run Dockerized Bootstrapping from Git
+      timeout-minutes: 20
+      shell: bash
+      run: |
+        cd index
+        make test-bootstrapping
+
+    - name: Run Dockerized Tests for S3
+      timeout-minutes: 20
+      shell: bash
+      run: |
+        cd index
+        make test-indexing
+
   push:
+    if: github.ref == 'refs/heads/main'
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code

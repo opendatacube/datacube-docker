@@ -1,6 +1,12 @@
-name : Statistician Push
+name : Statistician Test and Push
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'statistician/**'
+      - '.github/workflows/statistician-*'
   push:
     branches:
       - main
@@ -8,11 +14,30 @@ on:
       - 'statistician/**'
       - '.github/workflows/statistician-*'
 
-env:
-  IMAGE_NAME: opendatacube/datacube-statistician
-
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build Statistician image
+      timeout-minutes: 20
+      shell: bash
+      run: |
+        cd statistician
+        docker-compose build
+
+    - name: Run Dockerized Tests for Statistician
+      timeout-minutes: 20
+      shell: bash
+      run: |
+        cd statistician
+        make test
+
   push:
+    if: github.ref == 'refs/heads/main'
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
