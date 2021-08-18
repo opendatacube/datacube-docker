@@ -1,21 +1,27 @@
 ARG V_BASE=3.3.0
-ARG py_env_path=/env
 
 FROM opendatacube/geobase-builder:${V_BASE} as env_builder
 ENV LC_ALL=C.UTF-8
 
-# Install our Python requirements
-COPY requirements.txt constraints.txt version.txt /conf/
+ARG py_env_path=/env
 
-ARG py_env_path
+# Install our Python requirements
+COPY requirements.txt constraints.txt nobinary.txt version.txt /conf/
+
 RUN cat /conf/version.txt \
-    && env-build-tool new /conf/requirements.txt /conf/constraints.txt ${py_env_path}
+  && NOBINARY=/conf/nobinary.txt env-build-tool new /conf/requirements.txt /conf/constraints.txt ${py_env_path} \
+  && rm -rf /root/.cache/pip \
+  && echo done
+
+ENV PATH="${py_env_path}/bin:${PATH}"
+RUN pip freeze
 
 # Below is the actual image that does the running
 FROM opendatacube/geobase-runner:${V_BASE}
+ARG py_env_path=/env
 
 ENV DEBIAN_FRONTEND=noninteractive \
-    PATH="/env/bin:${PATH}" \
+    PATH="${py_env_path}/bin:${PATH}" \
     LC_ALL=C.UTF-8 \
     LANG=C.UTF-8
 
@@ -31,7 +37,6 @@ RUN groupadd --gid 1000 odc \
   && install -d -o odc -g odc /code \
   && true
 
-ARG py_env_path
 COPY --from=env_builder /env /env
 
 # Copy Datacube bootstrapping and other scripts
@@ -50,3 +55,5 @@ RUN ln -s /code/bootstrap-odc.sh /usr/local/bin/bootstrap-odc.sh
 
 WORKDIR /home/odc
 USER odc
+
+RUN s3-to-dc --help
