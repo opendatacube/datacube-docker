@@ -16,7 +16,7 @@ docker-compose exec -T index datacube product add https://raw.githubusercontent.
 docker-compose exec -T index s3-to-dc --no-sign-request --stac "s3://sentinel-cogs/sentinel-s2-l2a-cogs/2020/S2A_32NNF_20200127_0_L2A/*.json" s2_l2a
 echo "Checking STAC API indexing"
 docker-compose exec -T index stac-to-dc \
-  --catalog-href='earth-search.aws.element84.com/v0' \
+  --catalog-href='https://earth-search.aws.element84.com/v0' \
   --bbox='5,15,10,20' \
   --limit=10 \
   --collections='sentinel-s2-l2a-cogs' \
