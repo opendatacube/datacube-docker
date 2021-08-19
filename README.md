@@ -15,3 +15,11 @@ Each project should have a docker-compose file that can be used to run and test 
 
 * [opendatacube/datacube-statistician](statistician/readme.md): A minimal Image that is used to run Statistician processing
 * [opendatacube/datacube-index](index/readme.md): A suite of tools to manage indexing into an Open Data Cube database
+
+## How to update requirements
+
+* Empty out the `constraints.txt` file (delete all the contents, but leave it there)
+* Run `docker build . --progress=plain`
+* Check that the build succeeds, and copy out the output of the `pip freeze` command, which each image should be doing
+* Paste the output of `pip freeze` into the `constraints.txt` and check that it makes sense and isn't too different from before
+* Commit the changes and push to GitHub for the automated build, and confirm it works there too.
