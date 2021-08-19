@@ -1,5 +1,8 @@
 name : Statistician Test and Push
 
+env:
+  IMAGE_NAME: opendatacube/datacube-statistician
+
 on:
   pull_request:
     branches:

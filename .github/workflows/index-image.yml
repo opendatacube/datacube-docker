@@ -1,5 +1,8 @@
 name : Index Test and Push
 
+env:
+  IMAGE_NAME: opendatacube/datacube-index
+
 on:
   pull_request:
     branches:
