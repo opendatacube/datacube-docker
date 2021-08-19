@@ -1,9 +1,8 @@
 --extra-index-url https://packages.dea.ga.gov.au/
 
-datacube[performance,s3]==1.8.5
-aiobotocore[awscli,boto3]==1.3.3
+datacube[performance,s3]
+aiobotocore[awscli,boto3]
 odc-stats
-hdstats==0.1.8.post1
 # For integration tests
 odc-apps-cloud
 odc-apps-dc-tools
