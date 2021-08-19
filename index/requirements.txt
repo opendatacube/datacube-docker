@@ -1,11 +1,8 @@
 --extra-index-url https://packages.dea.ga.gov.au/
-aiobotocore[awscli,boto3]==1.3.0
-datacube[performance,s3]>=1.8.4.dev
+
+datacube[performance,s3]==1.8.5
+aiobotocore[awscli,boto3]==1.3.3
 odc-apps-dc-tools
-odc-apps-cloud # s3-find
-# Pinned for Alex to index STAC
-sat-search==0.3.0
-# Required by the bootstrap-odc script
-wget
+odc-apps-cloud
 # Useful package for comparing s3 inventory listings
 dawg

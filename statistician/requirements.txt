@@ -1,13 +1,12 @@
 --extra-index-url https://packages.dea.ga.gov.au/
 
-datacube[performance,s3]==1.8.4.dev81+g80d466a2
+datacube[performance,s3]==1.8.5
+aiobotocore[awscli,boto3]==1.3.3
 odc-stats
-hdstats==0.2.1
-# For the s3-find app
-odc-apps-cloud
+hdstats==0.1.8.post1
 # For integration tests
+odc-apps-cloud
 odc-apps-dc-tools
-sat-search
 # For user convenience
 awscli
 rio-cogeo
