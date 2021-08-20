@@ -39,10 +39,5 @@ WORKDIR /tmp
 COPY --from=env_builder $py_env_path $py_env_path
 ENV PATH="${py_env_path}/bin:${PATH}"
 
-# override hdstats - install faster version from dea packages
-RUN echo "Patching python env - hdstats" \
-  && pip install --force-reinstall \
-  --extra-index-url="https://packages.dea.ga.gov.au" hdstats==0.1.8.post1
-
 RUN env && echo $PATH && pip freeze && pip check
 RUN odc-stats --help
