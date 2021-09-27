@@ -31,6 +31,7 @@ RUN apt-get update \
          wget \
          curl \
          nano \
+         libxslt-dev \
     && rm -rf /var/lib/apt/lists/*
 
 
