@@ -39,7 +39,7 @@ netCDF4==1.5.7
 numpy==1.21.2
 odc-aio==0.2.1.dev2476
 odc-apps-cloud==0.2.1.dev2622
-odc-apps-dc-tools==0.2.1.dev2622
+odc-apps-dc-tools==0.2.1.dev2912
 odc-aws==0.2.1.dev2476
 odc-index==0.2.1.dev2420
 odc-io==0.2.1.dev2622
