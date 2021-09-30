@@ -1,14 +1,15 @@
 rio-cogeo
-datacube[performance,s3]==1.8.6 
+datacube[performance,s3]==1.8.6
 aiobotocore[awscli,boto3]==1.3.3
 
 --extra-index-url https://packages.dea.ga.gov.au/
 hdstats==0.1.8.post1
-odc-algo==0.2.1.dev2937
-odc-cloud==0.2.1.dev2937
-odc-dscache==0.2.1.dev2937
-odc-io==0.2.1.dev2937
-odc-stac==0.2.1.dev2937
-odc-stats[ows]==0.2.1.dev2937
+odc-algo==0.2.1.dev2950
+odc-apps-dc-tools==0.2.1.dev2950
+odc-cloud==0.2.1.dev2950
+odc-dscache==0.2.1.dev2950
+odc-io==0.2.1.dev2950
+odc-stac==0.2.1.dev2950
+odc-stats[ows]==0.2.1.dev2950
 # For testing
-odc-apps-dc-tools==0.2.1.dev2937
+odc-apps-dc-tools==0.2.1.dev2950
