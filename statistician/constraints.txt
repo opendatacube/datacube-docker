@@ -66,6 +66,7 @@ networkx==2.6.3
 numexpr==2.7.3
 numpy==1.21.2
 odc-algo==0.2.1.dev2954
+odc-apps-cloud==0.2.1.dev2954
 odc-apps-dc-tools==0.2.1.dev2954
 odc-cloud==0.2.1.dev2954
 odc-dscache==0.2.1.dev2954

@@ -5,6 +5,7 @@ aiobotocore[awscli,boto3]==1.3.3
 --extra-index-url https://packages.dea.ga.gov.au/
 hdstats==0.1.8.post1
 odc-algo==0.2.1.dev2954
+odc-apps-cloud==0.2.1.dev2954
 odc-apps-dc-tools==0.2.1.dev2954
 odc-cloud==0.2.1.dev2954
 odc-dscache==0.2.1.dev2954
