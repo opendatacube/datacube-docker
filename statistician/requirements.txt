@@ -11,6 +11,6 @@ odc-cloud==0.2.1.dev3025
 odc-dscache==0.2.1.dev3025
 odc-io==0.2.1.dev3025
 odc-stac==0.2.1.dev3025
-odc-stats[ows]==0.2.1.dev3025
+odc-stats[ows]==1.0.1.dev3050
 # For testing
 odc-apps-dc-tools==0.2.1.dev3025
