@@ -4,7 +4,7 @@
 #
 #    pip-compile --extra-index-url=https://packages.dea.ga.gov.au/ --output-file=constraints.txt requirements.txt
 #
---extra-index-url https://packages.dea.ga.gov.au/
+# --extra-index-url https://packages.dea.ga.gov.au/
 
 affine==2.3.0
     # via
