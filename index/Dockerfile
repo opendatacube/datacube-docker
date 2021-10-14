@@ -17,8 +17,8 @@ RUN apt-get update \
     fish \
     wget \
     unzip \
-    # Yaml parsing
-    libyaml \
+    # Yaml parsing speedup, I think
+    libyaml-dev \
     # Cleanup
     && apt-get autoclean && \
     apt-get autoremove && \
@@ -28,7 +28,9 @@ COPY requirements.txt constraints.txt version.txt /conf/
 
 RUN cat /conf/version.txt \
   && pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r /conf/requirements.txt -c /conf/constraints.txt
+  && pip install --no-cache-dir \
+    -r /conf/requirements.txt \
+    -c /conf/constraints.txt
 
 RUN pip freeze
 

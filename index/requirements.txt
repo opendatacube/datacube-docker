@@ -6,3 +6,7 @@ odc-apps-dc-tools
 odc-apps-cloud
 # Useful package for comparing s3 inventory listings
 dawg
+# Libraries to compile with the local gdal
+--no-binary rasterio
+--no-binary fiona
+--no-binary shapely
