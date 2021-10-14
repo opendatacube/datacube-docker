@@ -6,11 +6,12 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 RUN apt-get update \
     && apt-get install -y \
-    # Build tools
+    # Build tools\
     build-essential \
     python3-pip \
+    python3-dev \
     # For Psycopg2
-    libpq-dev python3-dev \
+    libpq-dev\
     postgresql-client-12 \
     # Developer convenience
     git \

@@ -10,3 +10,5 @@ dawg
 --no-binary rasterio
 --no-binary fiona
 --no-binary shapely
+# Todo: troubleshoot why this won't compile
+# --no-binary pyproj
