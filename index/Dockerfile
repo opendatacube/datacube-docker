@@ -10,13 +10,15 @@ RUN apt-get update \
     build-essential \
     python3-pip \
     # For Psycopg2
-    libpq-dev python-dev \
-    postgresql-12 \
+    libpq-dev python3-dev \
+    postgresql-client-12 \
     # Developer convenience
     git \
     fish \
     wget \
     unzip \
+    # Yaml parsing
+    libyaml \
     # Cleanup
     && apt-get autoclean && \
     apt-get autoremove && \
