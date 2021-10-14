@@ -1,5 +1,0 @@
-postgresql-12
-git
-fish
-wget
-unzip
