@@ -38,7 +38,7 @@ RUN apt-get update \
     unzip \
     htop \
     tmux \
-    vi \
+    vim \
     # Yaml parsing speedup, I think
     libyaml-dev \
     # Cleanup
