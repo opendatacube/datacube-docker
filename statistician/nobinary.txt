@@ -1,8 +1,0 @@
-lmdb
-lxml
-numexpr
-pyzmq
-msgpack
-ruamel.yaml.clib
-tornado
-zstandard

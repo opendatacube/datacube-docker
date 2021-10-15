@@ -16,3 +16,7 @@ odc-io==0.2.1.dev3083
 odc-stats[ows]==1.0.2.dev3083
 # For testing
 odc-apps-dc-tools==0.2.1.dev3083
+
+--no-binary rasterio
+--no-binary fiona
+--no-binary shapely
