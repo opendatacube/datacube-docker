@@ -81,7 +81,7 @@ cloudpickle==2.0.0
     #   distributed
 colorama==0.4.3
     # via awscli
-dask[array]==2021.09.1
+dask==2021.09.1
     # via
     #   datacube
     #   distributed
@@ -144,19 +144,19 @@ numpy==1.21.2
     #   rasterio
     #   snuggs
     #   xarray
-odc-apps-cloud==0.2.1.dev3093
+odc-apps-cloud==0.2.1.dev3099
     # via -r requirements.txt
-odc-apps-dc-tools==0.2.1.dev3093
+odc-apps-dc-tools==0.2.1.dev3099
     # via -r requirements.txt
-odc-cloud[async]==0.2.1.dev3093
+odc-cloud[async]==0.2.1.dev3099
     # via
     #   odc-apps-cloud
     #   odc-apps-dc-tools
-odc-io==0.2.1.dev3093
+odc-io==0.2.1.dev3099
     # via
     #   odc-apps-cloud
     #   odc-apps-dc-tools
-odc-stac==0.2.1.dev3071
+odc-stac==0.2.1
     # via odc-apps-dc-tools
 packaging==21.0
     # via dask
