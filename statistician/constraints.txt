@@ -30,7 +30,7 @@ cycler==0.10.0
 dask==2021.9.1
 dask-image==0.6.0
 datacube==1.8.6
-datacube-ows==1.8.20
+datacube-ows==1.8.21
 deepdiff==5.6.0
 defusedxml==0.7.1
 distributed==2021.9.1
