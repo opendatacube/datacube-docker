@@ -23,20 +23,31 @@ docker-compose exec -T stats datacube metadata add https://raw.githubusercontent
 docker-compose exec -T stats datacube product add https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/products/baseline_satellite_data/c3/ard_ls8.odc-product.yaml
 
 # only index several data to speed up yearly summary run
-docker-compose exec -T stats s3-to-dc "s3://dea-public-data/baseline/ga_ls8c_ard_3/088/079/2015/02/*/*.json" --no-sign-request --skip-lineage --stac ga_ls8c_ard_3
-docker-compose exec -T stats s3-to-dc "s3://dea-public-data/baseline/ga_ls8c_ard_3/088/079/2015/03/*/*.json" --no-sign-request --skip-lineage --stac ga_ls8c_ard_3
-docker-compose exec -T stats s3-to-dc "s3://dea-public-data/baseline/ga_ls8c_ard_3/088/079/2015/04/*/*.json" --no-sign-request --skip-lineage --stac ga_ls8c_ard_3
-docker-compose exec -T stats s3-to-dc "s3://dea-public-data/baseline/ga_ls8c_ard_3/088/079/2015/05/*/*.json" --no-sign-request --skip-lineage --stac ga_ls8c_ard_3
+docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/baseline/ga_ls8c_ard_3/088/079/2015/02/*/*.json" --no-sign-request --skip-lineage --stac ga_ls8c_ard_3
+docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/baseline/ga_ls8c_ard_3/088/079/2015/03/*/*.json" --no-sign-request --skip-lineage --stac ga_ls8c_ard_3
+docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/baseline/ga_ls8c_ard_3/088/079/2015/04/*/*.json" --no-sign-request --skip-lineage --stac ga_ls8c_ard_3
+docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/baseline/ga_ls8c_ard_3/088/079/2015/05/*/*.json" --no-sign-request --skip-lineage --stac ga_ls8c_ard_3
 
-echo "Checking EODatasets3 integration save tasks"
-docker-compose exec -T stats odc-stats save-tasks --grid=au-10 --year=2015 --overwrite ga_ls8c_ard_3 eo3-test-run.db
-echo "Checking EODatasets3 integration job run"
+echo "Checking GeoMAD EODatasets3 integration save tasks"
+docker-compose exec -T stats odc-stats save-tasks --grid=au-10 --year=2015 --overwrite ga_ls8c_ard_3 geomad-eo3-test-run.db
 
+echo "Checking GeoMAD EODatasets3 integration job run"
 # wget the odc-stats run cfg from Github: https://github.com/GeoscienceAustralia/dea-config/blob/master/dev/services/odc-stats/geomedian/ga_ls8c_nbart_gm_cyear_3.yaml
 docker-compose exec -T stats wget https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/dev/services/odc-stats/geomedian/ga_ls8c_nbart_gm_cyear_3.yaml
-docker-compose exec -T stats odc-stats run  --threads=1 --config ga_ls8c_nbart_gm_cyear_3.yaml --resolution=30 --location file:///tmp ./eo3-test-run.db 0 --apply_eodatasets3
-docker-compose exec -T stats ls /tmp
+docker-compose exec -T stats odc-stats run  --threads=1 --config ga_ls8c_nbart_gm_cyear_3.yaml --resolution=30 --location file:///tmp geomad-eo3-test-run.db 0 --apply_eodatasets3
 
 # 2) WO-summary-AU
+docker-compose exec -T stats datacube product add https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/products/inland_water/c3_wo/ga_ls_wo_3.odc-product.yaml
 
-docker-compose down
+# only index several data to speed up yearly summary run
+docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/derivative/ga_ls_wo_3/1-6-0/088/079/2015/02/*/*.json" --no-sign-request --skip-lineage --stac ga_ls_wo_3
+docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/derivative/ga_ls_wo_3/1-6-0/088/079/2015/03/*/*.json" --no-sign-request --skip-lineage --stac ga_ls_wo_3
+docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/derivative/ga_ls_wo_3/1-6-0/088/079/2015/04/*/*.json" --no-sign-request --skip-lineage --stac ga_ls_wo_3
+docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/derivative/ga_ls_wo_3/1-6-0/088/079/2015/05/*/*.json" --no-sign-request --skip-lineage --stac ga_ls_wo_3
+
+echo "Checking WO summary EODatasets3 integration save tasks"
+docker-compose exec -T stats odc-stats save-tasks --grid=au-30 --year=2015 --overwrite ga_ls_wo_3 wo-summary-eo3-test-run.db
+
+echo "Checking WO summary EODatasets3 integration job run"
+docker-compose exec -T stats wget https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/dev/services/odc-stats/wofs_summary/ga_ls_wo_fq_cyear_3.yaml
+docker-compose exec -T stats odc-stats run  --threads=1 --config ga_ls_wo_fq_cyear_3.yaml --resolution=30 --location file:///tmp wo-summary-eo3-test-run.db 0 --apply_eodatasets3
