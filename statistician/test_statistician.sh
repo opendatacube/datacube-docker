@@ -33,7 +33,7 @@ docker-compose exec -T stats odc-stats save-tasks --grid=au-10 --year=2015 --ove
 echo "Checking GeoMAD EODatasets3 integration job run"
 # wget the odc-stats run cfg from Github: https://github.com/GeoscienceAustralia/dea-config/blob/master/dev/services/odc-stats/geomedian/ga_ls8c_nbart_gm_cyear_3.yaml
 docker-compose exec -T stats wget https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/dev/services/odc-stats/geomedian/ga_ls8c_nbart_gm_cyear_3.yaml
-docker-compose exec -T stats odc-stats run  --threads=1 --config ga_ls8c_nbart_gm_cyear_3.yaml --resolution=30 --location file:///tmp geomad-eo3-test-run.db 0 --apply_eodatasets3
+docker-compose exec -T stats odc-stats run  --threads=1 --config ga_ls8c_nbart_gm_cyear_3.yaml --resolution=30 --location file:///tmp geomad-eo3-test-run.db 0 --overwrite --apply_eodatasets3
 
 # 2) WO-summary-AU
 docker-compose exec -T stats datacube product add https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/products/inland_water/c3_wo/ga_ls_wo_3.odc-product.yaml
@@ -49,7 +49,7 @@ docker-compose exec -T stats odc-stats save-tasks --grid=au-30 --year=2015 --ove
 
 echo "Checking WO summary EODatasets3 integration job run"
 docker-compose exec -T stats wget https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/dev/services/odc-stats/wofs_summary/ga_ls_wo_fq_cyear_3.yaml
-docker-compose exec -T stats odc-stats run  --threads=1 --config ga_ls_wo_fq_cyear_3.yaml --resolution=30 --location file:///tmp wo-summary-eo3-test-run.db 0 --apply_eodatasets3
+docker-compose exec -T stats odc-stats run  --threads=1 --config ga_ls_wo_fq_cyear_3.yaml --resolution=30 --location file:///tmp wo-summary-eo3-test-run.db 0 --overwrite --apply_eodatasets3
 
 # 3) FCP-AU
 docker-compose exec -T stats datacube product add https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/products/land_and_vegetation/c3_fc/ga_ls_fc_3.odc-product.yaml
@@ -65,6 +65,6 @@ docker-compose exec -T stats odc-stats save-tasks --grid=au-30 --year=2015 --ove
 
 echo "Checking WO summary EODatasets3 integration job run"
 docker-compose exec -T stats wget https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/dev/services/odc-stats/fc_percentile/ga_ls_fc_pc_cyear_3.yaml
-docker-compose exec -T stats odc-stats run  --threads=1 --config ga_ls_fc_pc_cyear_3.yaml --resolution=30 --location file:///tmp fcp-eo3-test-run.db 0 --apply_eodatasets3
+docker-compose exec -T stats odc-stats run  --threads=1 --config ga_ls_fc_pc_cyear_3.yaml --resolution=30 --location file:///tmp fcp-eo3-test-run.db 0 --overwrite --apply_eodatasets3
 
-docker-compose exec -T stats ls -R /tmp/x18/4y82
+docker-compose exec -T stats ls -R /tmp
