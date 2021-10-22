@@ -15,3 +15,28 @@ docker-compose exec -T stats odc-stats save-tasks --grid africa-20 --year 2019 -
 echo "Checking a job run"
 docker-compose exec -T stats odc-stats run  --threads=1 --plugin pq --location file:///tmp ./test-run.db 0
 docker-compose exec -T stats ls /tmp
+
+# add eodatasets3 + OWS integration test
+
+# 1) GeoMAD-AU
+docker-compose exec -T stats datacube metadata add https://raw.githubusercontent.com/GeoscienceAustralia/digitalearthau/develop/digitalearthau/config/eo3/eo3_landsat_ard.odc-type.yaml
+docker-compose exec -T stats datacube product add https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/products/baseline_satellite_data/c3/ard_ls8.odc-product.yaml
+
+# only index several data to speed up yearly summary run
+docker-compose exec -T stats s3-to-dc "s3://dea-public-data/baseline/ga_ls8c_ard_3/088/079/2015/02/*/*.json" --no-sign-request --skip-lineage --stac ga_ls8c_ard_3
+docker-compose exec -T stats s3-to-dc "s3://dea-public-data/baseline/ga_ls8c_ard_3/088/079/2015/03/*/*.json" --no-sign-request --skip-lineage --stac ga_ls8c_ard_3
+docker-compose exec -T stats s3-to-dc "s3://dea-public-data/baseline/ga_ls8c_ard_3/088/079/2015/04/*/*.json" --no-sign-request --skip-lineage --stac ga_ls8c_ard_3
+docker-compose exec -T stats s3-to-dc "s3://dea-public-data/baseline/ga_ls8c_ard_3/088/079/2015/05/*/*.json" --no-sign-request --skip-lineage --stac ga_ls8c_ard_3
+
+echo "Checking EODatasets3 integration save tasks"
+docker-compose exec -T stats odc-stats save-tasks --grid=au-10 --year=2015 --overwrite ga_ls8c_ard_3 eo3-test-run.db
+echo "Checking EODatasets3 integration job run"
+
+# wget the odc-stats run cfg from Github: https://github.com/GeoscienceAustralia/dea-config/blob/master/dev/services/odc-stats/geomedian/ga_ls8c_nbart_gm_cyear_3.yaml
+docker-compose exec -T stats wget https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/dev/services/odc-stats/geomedian/ga_ls8c_nbart_gm_cyear_3.yaml
+docker-compose exec -T stats odc-stats run  --threads=1 --config ga_ls8c_nbart_gm_cyear_3.yaml --resolution=30 --location file:///tmp ./eo3-test-run.db 0 --apply_eodatasets3
+docker-compose exec -T stats ls /tmp
+
+# 2) WO-summary-AU
+
+docker-compose down
