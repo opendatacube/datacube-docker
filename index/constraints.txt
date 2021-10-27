@@ -81,7 +81,7 @@ cloudpickle==2.0.0
     #   distributed
 colorama==0.4.3
     # via awscli
-dask==2021.09.1
+dask[array]==2021.10.0
     # via
     #   datacube
     #   distributed
@@ -92,7 +92,7 @@ datacube[performance,s3]==1.8.6
     #   odc-stac
 dawg==0.8.0
     # via -r requirements.txt
-distributed==2021.9.1
+distributed==2021.10.0
     # via datacube
 docutils==0.15.2
     # via awscli
@@ -116,7 +116,7 @@ jmespath==0.10.0
     # via
     #   boto3
     #   botocore
-jsonschema==4.1.0
+jsonschema==4.1.2
     # via datacube
 lark-parser==0.12.0
     # via datacube
@@ -132,7 +132,7 @@ multidict==5.2.0
     #   yarl
 netcdf4==1.5.7
     # via datacube
-numpy==1.21.2
+numpy==1.21.3
     # via
     #   bottleneck
     #   cftime
@@ -144,19 +144,19 @@ numpy==1.21.2
     #   rasterio
     #   snuggs
     #   xarray
-odc-apps-cloud==0.2.1.dev3099
+odc-apps-cloud==0.2.1.dev3153
     # via -r requirements.txt
-odc-apps-dc-tools==0.2.1.dev3099
+odc-apps-dc-tools==0.2.1.dev3153
     # via -r requirements.txt
-odc-cloud[async]==0.2.1.dev3099
+odc-cloud[async]==0.2.1.dev3153
     # via
     #   odc-apps-cloud
     #   odc-apps-dc-tools
-odc-io==0.2.1.dev3099
+odc-io==0.2.1.dev3153
     # via
     #   odc-apps-cloud
     #   odc-apps-dc-tools
-odc-stac==0.2.1
+odc-stac==0.2.2
     # via odc-apps-dc-tools
 packaging==21.0
     # via dask
@@ -173,7 +173,7 @@ psycopg2==2.9.1
     # via datacube
 pyasn1==0.4.8
     # via rsa
-pyparsing==2.4.7
+pyparsing==3.0.1
     # via
     #   packaging
     #   snuggs
@@ -219,7 +219,7 @@ s3transfer==0.4.2
     # via
     #   awscli
     #   boto3
-shapely==1.7.1
+shapely==1.8.0
     # via datacube
 six==1.16.0
     # via python-dateutil
@@ -227,7 +227,7 @@ snuggs==1.4.7
     # via rasterio
 sortedcontainers==2.4.0
     # via distributed
-sqlalchemy==1.4.25
+sqlalchemy==1.4.26
     # via datacube
 tblib==1.7.0
     # via distributed
