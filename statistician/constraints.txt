@@ -74,7 +74,7 @@ odc-cloud==0.2.1.dev3083
 odc-dscache==0.2.1.dev3083
 odc-io==0.2.1.dev3083
 odc-stac==0.2.0a9
-odc-stats==1.0.3
+odc-stats==1.0.4
 ordered-set==4.0.2
 packaging==21.0
 pandas==1.3.3
