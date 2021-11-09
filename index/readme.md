@@ -20,7 +20,7 @@ command worked well to upgrade some that were sticky.
 - `sqs-to-dc` A tool to index from an SQS queue
 
 
-the doc for commonly used commands can be find here: https://github.com/opendatacube/odc-tools/tree/develop/apps/dc_tools
+the doc for commonly used commands are available here: https://github.com/opendatacube/odc-tools/tree/develop/apps/dc_tools
 
 ## Other commands
 
@@ -29,4 +29,4 @@ the doc for commonly used commands can be find here: https://github.com/opendata
 - `gs-to-tar` search GS for documents and dump them to a tar archive
 - `dc-index-from-tar` read yaml documents from a tar archive and add them to datacube
 
-https://github.com/opendatacube/odc-tools#apps
+description for the above 4 commands are available here: https://github.com/opendatacube/odc-tools#apps
