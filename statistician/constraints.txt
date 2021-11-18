@@ -68,7 +68,7 @@ multidict==5.2.0
 netCDF4==1.5.8
 networkx==2.6.3
 numexpr==2.7.3
-numpy==1.17.4
+numpy==1.21.2
 odc-algo==0.2.1
 odc-apps-cloud==0.2.1
 odc-apps-dc-tools==0.2.1
