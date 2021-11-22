@@ -3,9 +3,9 @@ datacube[performance,s3]
 aiobotocore[awscli,boto3]
 
 # odc-stac is in PyPI
+odc-stats==1.0.7
 odc-dscache==0.2.0a3
 odc-stac==0.2.2
-odc-stats[ows]==1.0.6a
 odc-apps-cloud==0.2.1
 odc-algo==0.2.1
 odc-cloud==0.2.1
