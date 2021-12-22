@@ -73,7 +73,7 @@ odc-algo==0.2.1
 odc-apps-cloud==0.2.1
 odc-apps-dc-tools==0.2.1
 odc-cloud==0.2.1
-odc-dscache==0.2.0a3
+odc-dscache==0.2.2
 odc-io==0.2.1
 odc-stac==0.2.2
 odc-stats==1.0.10
