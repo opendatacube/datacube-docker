@@ -39,8 +39,10 @@ RUN cat /conf/version.txt \
     -r /conf/requirements.txt \
     -c /conf/constraints.txt
 
+RUN pip install --no-cache-dir git+https://github.com/opendatacube/odc-stats.git@features_needed
+
 RUN pip freeze
 
 WORKDIR /tmp
 
-RUN odc-stats --help
+RUN odc-stats --version
