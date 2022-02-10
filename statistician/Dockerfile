@@ -43,4 +43,4 @@ RUN pip freeze
 
 WORKDIR /tmp
 
-RUN odc-stats --help
+RUN odc-stats --version
