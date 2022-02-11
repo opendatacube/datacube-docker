@@ -4,7 +4,7 @@
 #
 #    pip-compile --extra-index-url=https://packages.dea.ga.gov.au/ --output-file=constraints.txt requirements.txt
 #
-# --extra-index-url https://packages.dea.ga.gov.au/
+--extra-index-url https://packages.dea.ga.gov.au/
 --no-binary fiona
 --no-binary rasterio
 --no-binary shapely
@@ -12,19 +12,20 @@
 affine==2.3.0
     # via
     #   datacube
-    #   odc-stac
     #   rasterio
 aiobotocore[awscli,boto3]==1.3.3
     # via
     #   -r requirements.txt
     #   odc-cloud
-aiohttp==3.7.4.post0
+aiohttp==3.8.1
     # via aiobotocore
-aioitertools==0.8.0
+aioitertools==0.9.0
     # via aiobotocore
-async-timeout==3.0.1
+aiosignal==1.2.0
     # via aiohttp
-attrs==21.2.0
+async-timeout==4.0.2
+    # via aiohttp
+attrs==21.4.0
     # via
     #   aiohttp
     #   jsonschema
@@ -46,19 +47,19 @@ botocore==1.20.106
     #   s3transfer
 bottleneck==1.3.2
     # via datacube
-cachetools==4.2.4
+cachetools==5.0.0
     # via datacube
 certifi==2021.10.8
     # via
     #   pyproj
     #   rasterio
     #   requests
-cftime==1.5.1
+cftime==1.5.2
     # via netcdf4
-chardet==4.0.0
-    # via aiohttp
-charset-normalizer==2.0.7
-    # via requests
+charset-normalizer==2.0.11
+    # via
+    #   aiohttp
+    #   requests
 ciso8601==2.2.0
     # via datacube
 click==8.0.3
@@ -81,7 +82,7 @@ cloudpickle==2.0.0
     #   distributed
 colorama==0.4.3
     # via awscli
-dask[array]==2021.10.0
+dask[array]==2022.01.1
     # via
     #   datacube
     #   distributed
@@ -89,14 +90,17 @@ datacube[performance,s3]==1.8.6
     # via
     #   -r requirements.txt
     #   odc-apps-dc-tools
-    #   odc-stac
 dawg==0.8.0
     # via -r requirements.txt
-distributed==2021.10.0
+distributed==2022.1.1
     # via datacube
 docutils==0.15.2
     # via awscli
-fsspec==2021.10.1
+frozenlist==1.3.0
+    # via
+    #   aiohttp
+    #   aiosignal
+fsspec==2022.1.0
     # via
     #   dask
     #   odc-apps-dc-tools
@@ -108,15 +112,13 @@ idna==3.3
     # via
     #   requests
     #   yarl
-jinja2==3.0.2
-    # via
-    #   distributed
-    #   odc-stac
+jinja2==3.0.3
+    # via distributed
 jmespath==0.10.0
     # via
     #   boto3
     #   botocore
-jsonschema==4.1.2
+jsonschema==4.4.0
     # via datacube
 lark-parser==0.12.0
     # via datacube
@@ -124,70 +126,68 @@ locket==0.2.1
     # via partd
 markupsafe==2.0.1
     # via jinja2
-msgpack==1.0.2
+msgpack==1.0.3
     # via distributed
-multidict==5.2.0
+multidict==6.0.2
     # via
     #   aiohttp
     #   yarl
-netcdf4==1.5.7
+netcdf4==1.5.8
     # via datacube
-numpy==1.21.3
+numpy==1.22.2
     # via
     #   bottleneck
     #   cftime
     #   dask
     #   datacube
     #   netcdf4
-    #   odc-stac
     #   pandas
     #   rasterio
     #   snuggs
     #   xarray
-odc-apps-cloud==0.2.1.dev3153
+odc-apps-cloud==0.2.1
     # via -r requirements.txt
-odc-apps-dc-tools==0.2.1.dev3153
+odc-apps-dc-tools==0.2.4
     # via -r requirements.txt
-odc-cloud[async]==0.2.1.dev3153
+odc-cloud[async]==0.2.1
     # via
     #   odc-apps-cloud
     #   odc-apps-dc-tools
-odc-io==0.2.1.dev3153
+odc-io==0.2.1
     # via
     #   odc-apps-cloud
     #   odc-apps-dc-tools
-odc-stac==0.2.2
-    # via odc-apps-dc-tools
-packaging==21.0
-    # via dask
-pandas==1.3.4
+packaging==21.3
+    # via
+    #   dask
+    #   distributed
+    #   xarray
+pandas==1.4.0
     # via
     #   datacube
-    #   odc-stac
     #   xarray
 partd==1.2.0
     # via dask
-psutil==5.8.0
+psutil==5.9.0
     # via distributed
-psycopg2==2.9.1
+psycopg2==2.9.3
     # via datacube
 pyasn1==0.4.8
     # via rsa
-pyparsing==3.0.1
+pyparsing==3.0.7
     # via
     #   packaging
     #   snuggs
-pyproj==3.2.1
+pyproj==3.3.0
     # via datacube
-pyrsistent==0.18.0
+pyrsistent==0.18.1
     # via jsonschema
-pystac==1.1.0
+pystac==1.2.0
     # via
     #   odc-apps-dc-tools
-    #   odc-stac
     #   pystac-client
     #   rio-stac
-pystac-client==0.3.0
+pystac-client==0.3.2
     # via odc-apps-dc-tools
 python-dateutil==2.8.2
     # via
@@ -195,7 +195,6 @@ python-dateutil==2.8.2
     #   datacube
     #   pandas
     #   pystac
-    #   pystac-client
 pytz==2021.3
     # via pandas
 pyyaml==5.4.1
@@ -209,9 +208,11 @@ rasterio==1.2.10
     # via
     #   datacube
     #   rio-stac
-requests==2.26.0
-    # via pystac-client
-rio-stac==0.3.1
+requests==2.27.1
+    # via
+    #   pystac-client
+    #   urlpath
+rio-stac==0.3.2
     # via odc-apps-dc-tools
 rsa==4.7.2
     # via awscli
@@ -227,33 +228,32 @@ snuggs==1.4.7
     # via rasterio
 sortedcontainers==2.4.0
     # via distributed
-sqlalchemy==1.4.26
+sqlalchemy==1.4.31
     # via datacube
 tblib==1.7.0
     # via distributed
-toolz==0.11.1
+toolz==0.11.2
     # via
     #   dask
     #   datacube
     #   distributed
     #   odc-apps-dc-tools
-    #   odc-stac
     #   partd
 tornado==6.1
     # via distributed
-typing-extensions==3.10.0.2
-    # via aiohttp
-urllib3==1.26.7
+typing-extensions==4.0.1
+    # via aioitertools
+urllib3==1.26.8
     # via
     #   botocore
     #   requests
-wrapt==1.13.2
+urlpath==1.2.0
+    # via odc-apps-dc-tools
+wrapt==1.13.3
     # via aiobotocore
-xarray==0.19.0
-    # via
-    #   datacube
-    #   odc-stac
-yarl==1.7.0
+xarray==0.21.1
+    # via datacube
+yarl==1.7.2
     # via aiohttp
 zict==2.0.0
     # via distributed
