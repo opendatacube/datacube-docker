@@ -76,7 +76,7 @@ odc-cloud==0.2.1
 odc-dscache==0.2.2
 odc-io==0.2.1
 odc-stac==0.2.2
-odc-stats==1.0.13
+odc-stats==1.0.14
 ordered-set==4.0.2
 packaging==21.3
 pandas==1.4.0
