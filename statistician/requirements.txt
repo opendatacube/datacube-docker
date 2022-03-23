@@ -2,8 +2,9 @@ rio-cogeo
 datacube[performance,s3]
 aiobotocore[awscli,boto3]
 
+
 # odc-stac is in PyPI
-odc-stats[ows]==1.0.15
+odc-stats[ows]==1.0.18
 odc-dscache==0.2.2
 odc-stac==0.2.2
 odc-apps-cloud==0.2.1
