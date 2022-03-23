@@ -55,10 +55,10 @@ docker-compose exec -T stats odc-stats run  --threads=1 --config ga_ls_wo_fq_cye
 docker-compose exec -T stats datacube product add https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/products/land_and_vegetation/c3_fc/ga_ls_fc_3.odc-product.yaml
 
 # only index several data to speed up yearly summary run
-docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/derivative/ga_ls_fc_3/2-5-0/088/079/2015/02/*/*.json" --no-sign-request --skip-lineage --stac ga_ls_fc_3
-docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/derivative/ga_ls_fc_3/2-5-0/088/079/2015/03/*/*.json" --no-sign-request --skip-lineage --stac ga_ls_fc_3
-docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/derivative/ga_ls_fc_3/2-5-0/088/079/2015/04/*/*.json" --no-sign-request --skip-lineage --stac ga_ls_fc_3
-docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/derivative/ga_ls_fc_3/2-5-0/088/079/2015/05/*/*.json" --no-sign-request --skip-lineage --stac ga_ls_fc_3
+docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/derivative/ga_ls_fc_3/2-5-1/088/079/2015/02/*/*.json" --no-sign-request --skip-lineage --stac ga_ls_fc_3
+docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/derivative/ga_ls_fc_3/2-5-1/088/079/2015/03/*/*.json" --no-sign-request --skip-lineage --stac ga_ls_fc_3
+docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/derivative/ga_ls_fc_3/2-5-1/088/079/2015/04/*/*.json" --no-sign-request --skip-lineage --stac ga_ls_fc_3
+docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/derivative/ga_ls_fc_3/2-5-1/088/079/2015/05/*/*.json" --no-sign-request --skip-lineage --stac ga_ls_fc_3
 
 echo "Checking WO summary EODatasets3 integration save tasks"
 docker-compose exec -T stats odc-stats save-tasks --grid=au-30 --year=2015 --overwrite ga_ls_fc_3+ga_ls_wo_3 fcp-eo3-test-run.db
