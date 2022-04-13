@@ -1,4 +1,4 @@
-FROM osgeo/gdal:ubuntu-small-3.3.2
+FROM osgeo/gdal:ubuntu-small-3.4.2
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LC_ALL=C.UTF-8 \
@@ -12,7 +12,6 @@ RUN apt-get update \
     python3-dev \
     # For Psycopg2
     libpq-dev\
-    postgresql-client-13 \
     # Developer convenience
     git \
     fish \
@@ -24,6 +23,10 @@ RUN apt-get update \
     && apt-get autoclean && \
     apt-get autoremove && \
     rm -rf /var/lib/{apt,dpkg,cache,log}
+
+# Install PostgreSQL Client 13
+RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+RUN apt-get update && apt-get install -y postgresql-client-13
 
 COPY requirements.txt constraints.txt version.txt /conf/
 
