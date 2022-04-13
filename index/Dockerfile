@@ -12,7 +12,7 @@ RUN apt-get update \
     python3-dev \
     # For Psycopg2
     libpq-dev\
-    postgresql-client-12 \
+    postgresql-client-13 \
     # Developer convenience
     git \
     fish \
