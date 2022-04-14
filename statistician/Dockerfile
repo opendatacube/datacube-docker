@@ -21,13 +21,15 @@ RUN apt-get update \
     vim \
     # Yaml parsing speedup, I think
     libyaml-dev \
+    lsb-release \
     # Cleanup
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -vrf /var/lib/apt/lists/* \
     && rm -vrf /var/lib/{apt,dpkg,cache,log}
 
-# Install PostgreSQL Client 13
+# Setup PostgreSQL APT repository and install postgresql-client-13
+RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 RUN apt-get update && apt-get install -y postgresql-client-13
 
