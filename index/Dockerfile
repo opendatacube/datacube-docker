@@ -1,29 +1,38 @@
-FROM osgeo/gdal:ubuntu-small-3.3.2
+FROM osgeo/gdal:ubuntu-small-3.4.2
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LC_ALL=C.UTF-8 \
     LANG=C.UTF-8
 
 RUN apt-get update \
-    && apt-get install -y \
-    # Build tools\
-    build-essential \
-    python3-pip \
-    python3-dev \
-    # For Psycopg2
-    libpq-dev\
-    postgresql-client-12 \
     # Developer convenience
-    git \
-    fish \
-    wget \
-    unzip \
-    # Yaml parsing speedup, I think
-    libyaml-dev \
+    && apt-get install -y \
+        git \
+        fish \
+        wget \
+        unzip \
+        # Build tools\
+        build-essential \
+        python3-pip \
+        python3-dev \
+        # For Psycopg2
+        libpq-dev\
+        # Yaml parsing speedup, I think
+        libyaml-dev \
+        lsb-release \
     # Cleanup
-    && apt-get autoclean && \
-    apt-get autoremove && \
-    rm -rf /var/lib/{apt,dpkg,cache,log}
+    && apt-get autoclean \
+    && apt-get autoremove \
+    && rm -rf /var/lib/{apt,dpkg,cache,log}
+
+# Setup PostgreSQL APT repository and install postgresql-client-13
+RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+RUN apt-get update \
+    && apt-get install -y postgresql-client-13 \
+    && apt-get autoclean \
+    && apt-get autoremove \
+    && rm -rf /var/lib/{apt,dpkg,cache,log}
 
 COPY requirements.txt constraints.txt version.txt /conf/
 

@@ -1,4 +1,4 @@
-FROM osgeo/gdal:ubuntu-small-3.3.2
+FROM osgeo/gdal:ubuntu-small-3.4.2
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LC_ALL=C.UTF-8 \
@@ -12,7 +12,6 @@ RUN apt-get update \
     python3-dev \
     # For Psycopg2
     libpq-dev\
-    postgresql-client-12 \
     # Developer convenience
     git \
     wget \
@@ -22,11 +21,21 @@ RUN apt-get update \
     vim \
     # Yaml parsing speedup, I think
     libyaml-dev \
+    lsb-release \
     # Cleanup
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -vrf /var/lib/apt/lists/* \
     && rm -vrf /var/lib/{apt,dpkg,cache,log}
+
+# Setup PostgreSQL APT repository and install postgresql-client-13
+RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+RUN apt-get update \
+    && apt-get install -y postgresql-client-13 \
+    && apt-get autoclean \
+    && apt-get autoremove \
+    && rm -rf /var/lib/{apt,dpkg,cache,log}
 
 # Add in the dask configuration
 COPY distributed.yaml /etc/dask/distributed.yaml
