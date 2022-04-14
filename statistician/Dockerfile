@@ -31,7 +31,11 @@ RUN apt-get update \
 # Setup PostgreSQL APT repository and install postgresql-client-13
 RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-RUN apt-get update && apt-get install -y postgresql-client-13
+RUN apt-get update \
+    && apt-get install -y postgresql-client-13 \
+    && apt-get autoclean \
+    && apt-get autoremove \
+    && rm -rf /var/lib/{apt,dpkg,cache,log}
 
 # Add in the dask configuration
 COPY distributed.yaml /etc/dask/distributed.yaml
