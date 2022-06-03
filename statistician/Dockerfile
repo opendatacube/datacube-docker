@@ -40,10 +40,11 @@ RUN apt-get update \
 # Add in the dask configuration
 COPY distributed.yaml /etc/dask/distributed.yaml
 
-COPY requirements.txt constraints.txt version.txt /conf/
+COPY setup_reqs.txt requirements.txt constraints.txt version.txt /conf/
 
 RUN cat /conf/version.txt \
   && pip install --no-cache-dir --upgrade pip \
+  && pip install --no-cache-dir -r /conf/setup_reqs.txt\
   && pip install --no-cache-dir \
     -r /conf/requirements.txt \
     -c /conf/constraints.txt
