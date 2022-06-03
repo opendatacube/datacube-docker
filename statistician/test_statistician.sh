@@ -19,7 +19,7 @@ docker-compose exec -T stats odc-stats run  --threads=1 --plugin pq --location f
 
 # 1) GeoMAD-AU
 docker-compose exec -T stats datacube metadata add https://raw.githubusercontent.com/GeoscienceAustralia/digitalearthau/develop/digitalearthau/config/eo3/eo3_landsat_ard.odc-type.yaml
-docker-compose exec -T stats datacube product add https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/products/baseline_satellite_data/c3/ard_ls8.odc-product.yaml
+docker-compose exec -T stats datacube product add https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/products/baseline_satellite_data/c3/ga_ls8c_ard_3.odc-product.yaml
 
 # only index several data to speed up yearly summary run
 docker-compose exec -e AWS_DEFAULT_REGION=ap-southeast-2 -T stats s3-to-dc "s3://dea-public-data/baseline/ga_ls8c_ard_3/088/079/2015/02/*/*.json" --no-sign-request --skip-lineage --stac ga_ls8c_ard_3
