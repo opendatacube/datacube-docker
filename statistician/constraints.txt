@@ -78,7 +78,7 @@ odc-dscache==0.2.2
 odc-geo==0.2.0
 odc-io==0.2.1
 odc-stac==0.3.0rc1
-odc-stats==1.0.25
+odc-stats==1.0.26
 ordered-set==4.1.0
 packaging==21.3
 pandas==1.4.2
