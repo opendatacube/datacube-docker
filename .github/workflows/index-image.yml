@@ -55,6 +55,13 @@ jobs:
       run: |
           echo "version.txt not changed"
 
+    - name: Generate build number
+      uses: einaregilsson/build-number@v3
+      with:
+        token: ${{secrets.github_token}}
+    - name: Print new build number
+      run: echo "Build number is $BUILD_NUMBER
+
   push:
     if: github.ref == 'refs/heads/main'
     needs: test
@@ -79,7 +86,7 @@ jobs:
     - name: Run step only when version.txt is not changed.
       if: steps.verify-changed-version.outputs.files_changed == 'false'
       run: |
-        echo "VERSION=$(cat index/version.txt)$(git log --format="%H" -n 1)" >> $GITHUB_ENV
+        echo "VERSION=$(cat index/version.txt).dev$(git log --format="%H" -n 1)" >> $GITHUB_ENV
 
     - name: Build and Push unstable Docker Image from PR / Push to Master
       uses: whoan/docker-build-with-cache-action@v4
