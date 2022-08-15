@@ -45,7 +45,7 @@ jobs:
 
     - name: echo dev version for dockhub image tagging
       run: |
-        echo "$(cat index/version.txt).dev$BUILD_NUMBER
+        echo "$(cat index/version.txt).dev$BUILD_NUMBER"
 
   push:
     if: github.ref == 'refs/heads/main'
