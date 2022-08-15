@@ -38,12 +38,14 @@ jobs:
         cd index
         make test-indexing
 
-    - name: test
+    - name: Generate build number if version.txt is not changed
       uses: einaregilsson/build-number@v3
       with:
         token: ${{secrets.github_token}}
+
+    - name: echo dev version for dockhub image tagging
       run: |
-        echo $(cat index/version.txt).dev$BUILD_NUMBER
+        echo "$(cat index/version.txt).dev$BUILD_NUMBER
 
   push:
     if: github.ref == 'refs/heads/main'
@@ -71,6 +73,9 @@ jobs:
       uses: einaregilsson/build-number@v3
       with:
         token: ${{secrets.github_token}}
+
+    - name: echo dev version for dockhub image tagging
+      if: steps.verify-changed-version.outputs.files_changed == 'false'
       run: |
         echo "VERSION=$(cat index/version.txt).dev$BUILD_NUMBER" >> $GITHUB_ENV
 
