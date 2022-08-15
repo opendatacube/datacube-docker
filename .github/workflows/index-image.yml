@@ -24,19 +24,19 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Run Dockerized Bootstrapping from Git
-      timeout-minutes: 20
-      shell: bash
-      run: |
-        cd index
-        make test-bootstrapping
+    # - name: Run Dockerized Bootstrapping from Git
+    #   timeout-minutes: 20
+    #   shell: bash
+    #   run: |
+    #     cd index
+    #     make test-bootstrapping
 
-    - name: Run Dockerized Tests for S3
-      timeout-minutes: 20
-      shell: bash
-      run: |
-        cd index
-        make test-indexing
+    # - name: Run Dockerized Tests for S3
+    #   timeout-minutes: 20
+    #   shell: bash
+    #   run: |
+    #     cd index
+    #     make test-indexing
 
     - name: Verify Changed files
       uses: tj-actions/verify-changed-files@v10.1
@@ -46,8 +46,14 @@ jobs:
             version.txt
 
     - name: test changed file
+      if: steps.verify-changed-version.outputs.files_changed == 'true'
       run: |
           echo "Changed files: ${{ steps.verify-changed-files.outputs.changed_files }}"
+
+    - name: test changed file
+      if: steps.verify-changed-version.outputs.files_changed == 'false'
+      run: |
+          echo "version.txt not changed"
 
   push:
     if: github.ref == 'refs/heads/main'
