@@ -38,6 +38,16 @@ jobs:
         cd index
         make test-indexing
 
+    - name: Generate build number if version.txt is not changed
+      uses: einaregilsson/build-number@v3
+      with:
+        token: ${{secrets.github_token}}
+
+    - name: echo dev version for dockhub image tagging
+      run: |
+        echo "$(cat index/version.txt).dev$BUILD_NUMBER"
+        echo "${{ github.run_id }}-${{ github.run_number }}"
+
   push:
     if: github.ref == 'refs/heads/main'
     needs: test
@@ -46,9 +56,29 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Get tag for this build if it exists
+    - name: Verify Changed files
+      uses: tj-actions/verify-changed-files@v10.1
+      id: verify-changed-version
+      with:
+        files: |
+            version.txt
+
+    - name: Run step only when version.txt change.
+      if: steps.verify-changed-version.outputs.files_changed == 'true'
       run: |
+        echo "Changed files: ${{ steps.verify-changed-files.outputs.changed_files }}"
         echo "VERSION=$(cat index/version.txt)" >> $GITHUB_ENV
+
+    - name: Generate build number if version.txt is not changed
+      if: steps.verify-changed-version.outputs.files_changed == 'false'
+      uses: einaregilsson/build-number@v3
+      with:
+        token: ${{secrets.github_token}}
+
+    - name: echo dev version for dockhub image tagging
+      if: steps.verify-changed-version.outputs.files_changed == 'false'
+      run: |
+        echo "VERSION=$(cat index/version.txt).dev$BUILD_NUMBER" >> $GITHUB_ENV
 
     - name: Build and Push unstable Docker Image from PR / Push to Master
       uses: whoan/docker-build-with-cache-action@v4
