@@ -9,7 +9,7 @@
 --no-binary rasterio
 --no-binary shapely
 
-affine==2.3.0
+affine==2.3.1
     # via
     #   datacube
     #   rasterio
@@ -19,13 +19,13 @@ aiobotocore[awscli,boto3]==1.3.3
     #   odc-cloud
 aiohttp==3.8.1
     # via aiobotocore
-aioitertools==0.9.0
+aioitertools==0.10.0
     # via aiobotocore
 aiosignal==1.2.0
     # via aiohttp
 async-timeout==4.0.2
     # via aiohttp
-attrs==21.4.0
+attrs==22.1.0
     # via
     #   aiohttp
     #   jsonschema
@@ -45,24 +45,24 @@ botocore==1.20.106
     #   datacube
     #   odc-cloud
     #   s3transfer
-bottleneck==1.3.2
+bottleneck==1.3.5
     # via datacube
-cachetools==5.0.0
+cachetools==5.2.0
     # via datacube
-certifi==2021.10.8
+certifi==2022.6.15
     # via
     #   pyproj
     #   rasterio
     #   requests
-cftime==1.5.2
+cftime==1.6.1
     # via netcdf4
-charset-normalizer==2.0.11
+charset-normalizer==2.1.0
     # via
     #   aiohttp
     #   requests
 ciso8601==2.2.0
     # via datacube
-click==8.0.3
+click==8.1.3
     # via
     #   click-plugins
     #   cligj
@@ -75,14 +75,14 @@ click-plugins==1.1.1
     # via rasterio
 cligj==0.7.2
     # via rasterio
-cloudpickle==2.0.0
+cloudpickle==2.1.0
     # via
     #   dask
     #   datacube
     #   distributed
 colorama==0.4.3
     # via awscli
-dask[array]==2022.01.1
+dask[array]==2022.8.0
     # via
     #   datacube
     #   distributed
@@ -92,15 +92,15 @@ datacube[performance,s3]==1.8.6
     #   odc-apps-dc-tools
 dawg==0.8.0
     # via -r requirements.txt
-distributed==2022.1.1
+distributed==2022.8.0
     # via datacube
 docutils==0.15.2
     # via awscli
-frozenlist==1.3.0
+frozenlist==1.3.1
     # via
     #   aiohttp
     #   aiosignal
-fsspec==2022.1.0
+fsspec==2022.7.1
     # via
     #   dask
     #   odc-apps-dc-tools
@@ -114,29 +114,31 @@ idna==3.3
     #   yarl
 importlib-resources==5.9.0
     # via jsonschema
-jinja2==3.0.3
+jinja2==3.1.2
     # via distributed
 jmespath==0.10.0
     # via
     #   boto3
     #   botocore
-jsonschema==4.4.0
+jsonschema==4.10.0
     # via datacube
 lark-parser==0.12.0
     # via datacube
-locket==0.2.1
-    # via partd
-markupsafe==2.0.1
+locket==1.0.0
+    # via
+    #   distributed
+    #   partd
+markupsafe==2.1.1
     # via jinja2
-msgpack==1.0.3
+msgpack==1.0.4
     # via distributed
 multidict==6.0.2
     # via
     #   aiohttp
     #   yarl
-netcdf4==1.5.8
+netcdf4==1.6.0
     # via datacube
-numpy==1.22.2
+numpy==1.23.2
     # via
     #   bottleneck
     #   cftime
@@ -147,9 +149,9 @@ numpy==1.22.2
     #   rasterio
     #   snuggs
     #   xarray
-odc-apps-cloud==0.2.2.dev3367
+odc-apps-cloud==0.2.1
     # via -r requirements.txt
-odc-apps-dc-tools==0.2.5.dev3367
+odc-apps-dc-tools==0.2.4
     # via -r requirements.txt
 odc-cloud[async]==0.2.1
     # via
@@ -164,32 +166,34 @@ packaging==21.3
     #   dask
     #   distributed
     #   xarray
-pandas==1.4.0
+pandas==1.4.3
     # via
     #   datacube
     #   xarray
-partd==1.2.0
+partd==1.3.0
     # via dask
-psutil==5.9.0
+pkgutil-resolve-name==1.3.10
+    # via jsonschema
+psutil==5.9.1
     # via distributed
 psycopg2==2.9.3
     # via datacube
 pyasn1==0.4.8
     # via rsa
-pyparsing==3.0.7
+pyparsing==3.0.9
     # via
     #   packaging
     #   snuggs
-pyproj==3.3.0
+pyproj==3.3.1
     # via datacube
 pyrsistent==0.18.1
     # via jsonschema
-pystac==1.2.0
+pystac==1.6.1
     # via
     #   odc-apps-dc-tools
     #   pystac-client
     #   rio-stac
-pystac-client==0.3.2
+pystac-client==0.4.0
     # via odc-apps-dc-tools
 python-dateutil==2.8.2
     # via
@@ -197,7 +201,8 @@ python-dateutil==2.8.2
     #   datacube
     #   pandas
     #   pystac
-pytz==2021.3
+    #   pystac-client
+pytz==2022.2.1
     # via pandas
 pyyaml==5.4.1
     # via
@@ -206,15 +211,15 @@ pyyaml==5.4.1
     #   datacube
     #   distributed
     #   odc-apps-dc-tools
-rasterio==1.2.10
+rasterio==1.3.0.post1
     # via
     #   datacube
     #   rio-stac
-requests==2.27.1
+requests==2.28.1
     # via
     #   pystac-client
     #   urlpath
-rio-stac==0.3.2
+rio-stac==0.4.2
     # via odc-apps-dc-tools
 rsa==4.7.2
     # via awscli
@@ -222,7 +227,7 @@ s3transfer==0.4.2
     # via
     #   awscli
     #   boto3
-shapely==1.8.0
+shapely==1.8.2
     # via datacube
 six==1.16.0
     # via python-dateutil
@@ -230,11 +235,11 @@ snuggs==1.4.7
     # via rasterio
 sortedcontainers==2.4.0
     # via distributed
-sqlalchemy==1.4.31
+sqlalchemy==1.4.40
     # via datacube
 tblib==1.7.0
     # via distributed
-toolz==0.11.2
+toolz==0.12.0
     # via
     #   dask
     #   datacube
@@ -243,21 +248,22 @@ toolz==0.11.2
     #   partd
 tornado==6.1
     # via distributed
-typing-extensions==4.0.1
+typing-extensions==4.3.0
     # via aioitertools
-urllib3==1.26.8
+urllib3==1.26.11
     # via
     #   botocore
+    #   distributed
     #   requests
 urlpath==1.2.0
     # via odc-apps-dc-tools
-wrapt==1.13.3
+wrapt==1.14.1
     # via aiobotocore
-xarray==0.21.1
+xarray==2022.6.0
     # via datacube
-yarl==1.7.2
+yarl==1.8.1
     # via aiohttp
-zict==2.0.0
+zict==2.2.0
     # via distributed
 zipp==3.8.1
     # via importlib-resources
