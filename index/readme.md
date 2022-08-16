@@ -3,6 +3,7 @@
 Dockerfile for use in indexing into the Open Data Cube
 
 The build images are hosted here: https://hub.docker.com/r/opendatacube/datacube-index.
+The Dockerfile is accessible from: https://github.com/opendatacube/datacube-docker/blob/main/index/Dockerfile
 
 `version.txt` file contains the image tag for which the Github action will build and tag the new image.
 
