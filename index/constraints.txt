@@ -149,9 +149,9 @@ numpy==1.23.2
     #   rasterio
     #   snuggs
     #   xarray
-odc-apps-cloud==0.2.2.dev3379
+odc-apps-cloud==0.2.2.dev3382
     # via -r requirements.txt
-odc-apps-dc-tools==0.2.5.dev3379
+odc-apps-dc-tools==0.2.5.dev3382
     # via -r requirements.txt
 odc-cloud[async]==0.2.1
     # via
