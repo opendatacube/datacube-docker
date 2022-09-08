@@ -1,56 +1,26 @@
-FROM osgeo/gdal:ubuntu-small-3.4.2
+FROM mambaorg/micromamba:git-476701e-focal as stats-conda
 
-ENV DEBIAN_FRONTEND=noninteractive \
-    LC_ALL=C.UTF-8 \
-    LANG=C.UTF-8
+USER root 
+COPY env.yaml requirements.txt /conf/
+RUN micromamba create  -y -p /env -f /conf/env.yaml && \
+    micromamba clean --all --yes && \
+    micromamba env export -p /env --explicit
 
-RUN apt-get update \
-    && apt-get install -y \
-    # Build tools\
-    build-essential \
-    python3-pip \
-    python3-dev \
-    # For Psycopg2
-    libpq-dev\
-    # Developer convenience
-    git \
-    wget \
-    unzip \
-    htop \
-    tmux \
-    vim \
-    # Yaml parsing speedup, I think
-    libyaml-dev \
-    lsb-release \
-    # Cleanup
-    && apt-get autoremove -y \
-    && apt-get clean \
-    && rm -vrf /var/lib/apt/lists/* \
-    && rm -vrf /var/lib/{apt,dpkg,cache,log}
 
-# Setup PostgreSQL APT repository and install postgresql-client-13
-RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-RUN apt-get update \
-    && apt-get install -y postgresql-client-13 \
-    && apt-get autoclean \
-    && apt-get autoremove \
-    && rm -rf /var/lib/{apt,dpkg,cache,log}
+ARG MAMBA_DOCKERFILE_ACTIVATE=1
+RUN micromamba run -p /env pip install --no-cache-dir \
+    -r /conf/requirements.txt
 
-# Add in the dask configuration
-COPY distributed.yaml /etc/dask/distributed.yaml
+FROM ubuntu:focal-20220801 
+COPY --from=stats-conda /env /env
+COPY distributed.yaml  /etc/dask/
 
-COPY setup_reqs.txt requirements.txt constraints.txt version.txt /conf/
-
-RUN cat /conf/version.txt \
-  && pip install --no-cache-dir --upgrade pip \
-  && pip install --no-cache-dir -r /conf/setup_reqs.txt\
-  && pip install --no-cache-dir \
-    -r /conf/requirements.txt \
-    -c /conf/constraints.txt
-
-RUN pip freeze
+ENV GDAL_DRIVER_PATH=/env/lib/gdalplugins \ 
+    PROJ_LIB=/env/share/proj \
+    GDAL_DATA=/env/share/gdal \
+    PATH=/env/bin:$PATH
 
 WORKDIR /tmp
 
-RUN odc-stats --version
+RUN odc-stats --version 
+

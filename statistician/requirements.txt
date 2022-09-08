@@ -1,20 +1,14 @@
-rio-cogeo
-datacube[performance,s3]
-aiobotocore[awscli,boto3]
+datacube[performance,s3]>=1.8.27
 
 # odc-stac is in PyPI
-odc-stats[ows]==1.0.26
+odc-stats[ows]==1.0.28
 odc-dscache==0.2.2
 odc-stac==0.3.0rc1
 odc-apps-cloud==0.2.1
-odc-algo==0.2.2
+odc-algo==0.2.3
 odc-cloud==0.2.1
 # For testing
 odc-apps-dc-tools==0.2.4
 
 --extra-index-url https://packages.dea.ga.gov.au/
 hdstats==0.1.8.post1
-
---no-binary rasterio
---no-binary fiona
---no-binary shapely
