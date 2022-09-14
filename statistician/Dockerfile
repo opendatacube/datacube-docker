@@ -1,17 +1,18 @@
-FROM mambaorg/micromamba:git-476701e-focal as stats-conda
+FROM mambaorg/micromamba:git-7545124-jammy as stats-conda
 
-USER root 
-COPY env.yaml requirements.txt /conf/
+USER root
+COPY env.yaml /conf/
 RUN micromamba create  -y -p /env -f /conf/env.yaml && \
     micromamba clean --all --yes && \
     micromamba env export -p /env --explicit
 
 
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
+COPY requirements.txt /conf/
 RUN micromamba run -p /env pip install --no-cache-dir \
-    -r /conf/requirements.txt
+    --no-build-isolation -r /conf/requirements.txt
 
-FROM ubuntu:focal-20220801 
+FROM ubuntu:jammy-20220815
 COPY --from=stats-conda /env /env
 COPY distributed.yaml  /etc/dask/
 
