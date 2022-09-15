@@ -1,5 +1,5 @@
 ---
-name: docker checker
+name: Statistician docker check
 
 on:
   pull_request:
