@@ -9,8 +9,9 @@ services:
     restart: always
 
   stats:
-    build:
-      context: .
+    # build:
+    #   context: .
+    image: stats:test
     environment:
       - DB_HOSTNAME=postgres
       - DB_USERNAME=opendatacube
@@ -23,4 +24,4 @@ services:
       - postgres
     command: tail -f /dev/null
     volumes:
-      - ./test_data:/tmp/test_data
+      - ./tests:/tmp/tests
