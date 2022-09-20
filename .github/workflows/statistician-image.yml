@@ -40,34 +40,10 @@ jobs:
         docker-compose build
 
     - name: Run Dockerized Tests for Statistician
-      timeout-minutes: 20
       shell: bash
       run: |
         cd statistician
         make test
-    # a test here delete later
-    - name: Get tag for this build if it exists
-      run: |
-        echo "VERSION=$(cat statistician/version.txt)" >> $GITHUB_ENV
-
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        role-to-assume: arn:aws:iam::538673716275:role/github-ecr
-        aws-region: ap-southeast-2
-
-    - name: Login to AWS ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
-
-    - name: Push image to ECR
-      env:
-        REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: latest,${{ env.VERSION }}
-      run: |
-        cd ./statistician
-        docker build -t $REGISTRY/${{ env.IMAGE_NAME }}:$IMAGE_TAG .
-        docker push $REGISTRY/${{ env.IMAGE_NAME }}:$IMAGE_TAG
 
   push:
     if: github.ref == 'refs/heads/main'
@@ -87,15 +63,17 @@ jobs:
         role-to-assume: arn:aws:iam::538673716275:role/github-ecr
         aws-region: ap-southeast-2
 
-    - name: Login to AWS ECR 
+    - name: Login to AWS ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Push image to ECR
       env:
         REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: latest, ${{ env.VERSION }}
+        IMAGE_TAG: ${{ env.VERSION }}
       run: |
         cd ./statistician
-        docker-compose build -t $REGISTRY/${{ env.IMAGE_NAME }}:$IMAGE_TAG .
-        docker-compose push $REGISTRY/${{ env.IMAGE_NAME }}:$IMAGE_TAG
+        docker build -t $REGISTRY/${{ env.IMAGE_NAME }}:$IMAGE_TAG .
+        docker push $REGISTRY/${{ env.IMAGE_NAME }}:$IMAGE_TAG
+        docker tag $REGISTRY/${{ env.IMAGE_NAME }}:$IMAGE_TAG $REGISTRY/${{ env.IMAGE_NAME }}:latest
+        docker push $REGISTRY/${{ env.IMAGE_NAME }}:latest

@@ -9,9 +9,8 @@ services:
     restart: always
 
   stats:
-    # build:
-    #   context: .
-    image: stats:test
+    build:
+      context: .
     environment:
       - DB_HOSTNAME=postgres
       - DB_USERNAME=opendatacube
