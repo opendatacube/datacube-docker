@@ -1,3 +1,1 @@
-# opendatacube/datacube-statistician
-
-Dockerfile for the  statistician project
+The docker build for `odc-stats` in this repo is obsolete. It has been merged with [opendatacube/odc-stats](https://github.com/opendatacube/odc-stats/tree/develop/docker). The future update and maintenance will happen there.
