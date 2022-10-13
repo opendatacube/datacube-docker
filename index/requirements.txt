@@ -1,8 +1,8 @@
 --extra-index-url https://packages.dea.ga.gov.au/
 
-datacube[performance,s3]==1.8.6
-aiobotocore[awscli,boto3]==1.3.3
-odc-apps-dc-tools
+datacube[performance,s3]
+aiobotocore[awscli,boto3]
+odc-apps-dc-tools==0.2.7.dev3521
 odc-apps-cloud
 # Useful package for comparing s3 inventory listings
 dawg
@@ -10,5 +10,6 @@ dawg
 --no-binary rasterio
 --no-binary fiona
 --no-binary shapely
-# Todo: troubleshoot why this won't compile
+# why this won't compile
+# because gdal makes PROJ internal by changing symbol names
 # --no-binary pyproj
