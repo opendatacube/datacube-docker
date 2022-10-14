@@ -54,7 +54,7 @@ jobs:
             index/version.txt
 
     - name: Run step only when version.txt change.
-      if: steps.verify-changed-version.outputs.files_changed == 'true'
+      if: steps.verify-changed-version.outputs.any_changed == 'true'
       run: |
         echo "VERSION=$(cat index/version.txt)" >> $GITHUB_ENV
 
