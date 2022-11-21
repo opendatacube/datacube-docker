@@ -2,8 +2,8 @@
 
 datacube[performance,s3]
 aiobotocore[awscli,boto3]
-odc-apps-dc-tools==0.2.7.dev3521
-odc-apps-cloud
+odc-apps-dc-tools==0.2.8
+odc-apps-cloud==0.2.2
 # Useful package for comparing s3 inventory listings
 dawg
 # Libraries to compile with the local gdal
