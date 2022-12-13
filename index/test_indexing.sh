@@ -13,13 +13,13 @@ echo "Checking Indexed Datasets Count"
 docker-compose exec -T postgres psql -U postgres -c "SELECT count(*) from agdc.dataset"
 echo "Checking STAC indexing"
 docker-compose exec -T index datacube product add https://raw.githubusercontent.com/digitalearthafrica/config/78dfc5a1895b48225803cb0891b99eb01feb9f2e/products/esa_s2_l2a.odc-product.yaml
-docker-compose exec -T index s3-to-dc --no-sign-request --stac "s3://sentinel-cogs/sentinel-s2-l2a-cogs/2020/S2B_35LPJ_20200527_0_L2A/*.json" s2_l2a
+docker-compose exec -T index s3-to-dc --no-sign-request --stac "s3://sentinel-cogs/sentinel-2-l2a/2020/S2B_35LPJ_20200527_0_L2A/*.json" s2_l2a
 echo "Checking STAC API indexing"
 docker-compose exec -T index stac-to-dc \
   --catalog-href='https://earth-search.aws.element84.com/v0' \
   --bbox='5,15,10,20' \
   --limit=10 \
-  --collections='sentinel-s2-l2a-cogs' \
+  --collections='sentinel-2-l2a' \
   --datetime='2020-08-01/2020-08-31'
 echo "Checking Indexed Datasets Count (including STAC)"
 docker-compose exec -T postgres psql -U postgres -c "SELECT count(*) from agdc.dataset"
