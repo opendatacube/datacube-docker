@@ -19,7 +19,7 @@ docker-compose exec -T index stac-to-dc \
   --catalog-href='https://earth-search.aws.element84.com/v0' \
   --bbox='5,15,10,20' \
   --limit=10 \
-  --collections='sentinel-s2-l2a' \
+  --collections='sentinel-s2-l2a-cogs' \
   --datetime='2020-08-01/2020-08-31'
 echo "Checking Indexed Datasets Count (including STAC)"
 docker-compose exec -T postgres psql -U postgres -c "SELECT count(*) from agdc.dataset"
