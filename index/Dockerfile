@@ -20,6 +20,8 @@ RUN apt-get update \
         # Yaml parsing speedup, I think
         libyaml-dev \
         lsb-release \
+        # for shapely with --no-binary
+        libgeos-dev \
     # Cleanup
     && apt-get autoclean \
     && apt-get autoremove \
