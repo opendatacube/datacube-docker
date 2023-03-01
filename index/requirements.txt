@@ -1,9 +1,7 @@
---extra-index-url https://packages.dea.ga.gov.au/
-
 datacube[performance,s3]
 aiobotocore[awscli,boto3]
-odc-apps-dc-tools==0.2.9
-odc-apps-cloud==0.2.2
+odc-apps-dc-tools>=0.2.11
+odc-apps-cloud
 # Useful package for comparing s3 inventory listings
 dawg
 # Libraries to compile with the local gdal
