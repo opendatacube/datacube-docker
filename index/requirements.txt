@@ -1,4 +1,4 @@
-datacube[performance,s3]
+datacube[performance,s3]<=1.8.9
 aiobotocore[awscli,boto3]
 odc-apps-dc-tools>=0.2.11
 odc-apps-cloud
