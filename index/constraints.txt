@@ -29,7 +29,6 @@ attrs==23.1.0
     # via
     #   aiohttp
     #   cattrs
-    #   datacube
     #   eodatasets3
     #   jsonschema
     #   rasterio
@@ -199,7 +198,6 @@ odc-io==0.2.1
 packaging==23.2
     # via
     #   dask
-    #   datacube
     #   distributed
     #   geoalchemy2
     #   xarray
