@@ -1,11 +1,10 @@
---extra-index-url https://packages.dea.ga.gov.au/
 
 datacube[performance,s3]
 aiobotocore[awscli,boto3]
-odc-apps-dc-tools==0.2.11
-odc-apps-cloud==0.2.2
-# Useful package for comparing s3 inventory listings
-dawg
+odc-apps-dc-tools
+odc-apps-cloud
+# See https://github.com/yaml/pyyaml/issues/724
+pyyaml<=5.3.1
 # Libraries to compile with the local gdal
 --no-binary rasterio
 --no-binary fiona
