@@ -29,8 +29,7 @@ jobs:
       shell: bash
       run: |
         cd index
-        # This workflow is soooo flaky. External data dependencies have broken it!
-        make test-bootstrapping || true
+        make test-bootstrapping
 
     - name: Run Dockerized Tests for S3
       timeout-minutes: 20
