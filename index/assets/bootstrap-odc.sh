@@ -16,7 +16,7 @@ metadata_catalog=$2
 # Workaround for system init bug
 #PGPASSWORD=$DB_PASSWORD psql -h "$DB_HOSTNAME" -c 'create schema agdc;' -U "$DB_USERNAME" "$DB_DATABASE"
 
-datacube system init --no-default-types --no-init-users
+datacube system init --no-default-types
 # Created using : datacube metadata list | awk '{print $1}' | xargs datacube metadata show
 
 # Workaround for system init bug

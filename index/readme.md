@@ -9,48 +9,12 @@ The Dockerfile is accessible from: https://github.com/opendatacube/datacube-dock
 
 ## How to create a new image with latest odc-tools
 
-Basic method to update this image is to run:
+To update this image, make any changes you need to `reuirements.txt`, then run:
 
 ```
-rm constraints.txt
-pip-compile --extra-index-url https://packages.dea.ga.gov.au/ --pre --output-file constraints.txt requirements.txt
+pip-compile --upgrade --output-file constraints.txt requirements.txt
 ```
 
-The flag `--pre` will create `constraints.txt` with the latest available package. i.e.
-
-```
-odc-apps-cloud==0.2.2.dev3367
-    # via -r requirements.txt
-odc-apps-dc-tools==0.2.5.dev3367
-    # via -r requirements.txt
-odc-cloud[async]==0.2.2.dev3367
-    # via
-    #   odc-apps-cloud
-    #   odc-apps-dc-tools
-odc-io==0.2.2.dev3367
-    # via
-    #   odc-apps-cloud
-    #   odc-apps-dc-tools
-```
-If building the image with `.dev` latest libraries *DO NOT* edit the `version.txt` file, the new image will be tagged in the format i.e. `0.1.6.dev1212121`
-## How to create a new image with tagged released libraries
-
-```
-rm constraints.txt
-pip-compile --extra-index-url https://packages.dea.ga.gov.au/ --output-file constraints.txt requirements.txt`
-```
-
-This will re-generate the constraints.txt file with comments. Check for library version do not contain `.dev`
-
-```
-odc-apps-cloud==0.2.1
-    # via -r requirements.txt
-odc-apps-dc-tools==0.2.4
-    # via -r requirements.txt
-odc-cloud[async]==0.2.1
-```
-
-Edit `version.txt` to create an incremented tagged image number.
 # Included commands
 
 ## Most commonly used
