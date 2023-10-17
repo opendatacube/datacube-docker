@@ -9,10 +9,16 @@ services:
     environment:
       POSTGRES_PASSWORD: opendatacubepassword
     restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   # Start docker container for Datacube-Index
   index:
     build: .
+    image: datacube-index
     environment:
       - DB_HOSTNAME=postgres
       - DB_USERNAME=postgres
@@ -23,5 +29,7 @@ services:
       - PRODUCT_CATALOG=https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/a4f39b485b33608a016032d9987251881fec4b6f/workspaces/sandbox-products.csv
       - METADATA_CATALOG=https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/a4f39b485b33608a016032d9987251881fec4b6f/workspaces/sandbox-metadata.yaml
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+      
     command: tail -f /dev/null
