@@ -3,8 +3,7 @@ datacube[performance,s3]
 aiobotocore[awscli,boto3]
 odc-apps-dc-tools
 odc-apps-cloud
-# See https://github.com/yaml/pyyaml/issues/724
-pyyaml<=5.3.1
+pyyaml>=6.0.1
 # Libraries to compile with the local gdal
 --no-binary rasterio
 --no-binary fiona
