@@ -3,6 +3,7 @@ version: '3.7'
 services:
   # Start docker container for PostgreSQL to mock RDS
   postgres:
+    hostname: postgres
     image: postgres:12.6-alpine
     ports:
       - "5434:5432"
@@ -10,7 +11,7 @@ services:
       POSTGRES_PASSWORD: opendatacubepassword
     restart: always
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -h postgres -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -31,5 +32,5 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-      
+
     command: tail -f /dev/null
