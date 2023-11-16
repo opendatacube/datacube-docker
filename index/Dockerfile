@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LANG=C.UTF-8
 
 RUN apt-get update \
+    && apt-get upgrade -y \
     # Developer convenience
     && apt-get install -y --no-install-recommends \
         git \
