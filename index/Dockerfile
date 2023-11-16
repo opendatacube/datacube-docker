@@ -1,12 +1,13 @@
-FROM ghcr.io/osgeo/gdal:ubuntu-small-3.7.2
+FROM ghcr.io/osgeo/gdal:ubuntu-small-3.8.0
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LC_ALL=C.UTF-8 \
     LANG=C.UTF-8
 
 RUN apt-get update \
+    && apt-get upgrade -y \
     # Developer convenience
-    && apt-get install -y \
+    && apt-get install -y --no-install-recommends \
         git \
         fish \
         wget \
