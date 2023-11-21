@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Run Dockerized Bootstrapping from Git
       timeout-minutes: 20
@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Verify Changed files
       uses: tj-actions/changed-files@v40
@@ -73,7 +73,7 @@ jobs:
         image_tag: latest,${{ env.VERSION }}
 
     - name: Update Docker Hub Description
-      uses: peter-evans/dockerhub-description@v2
+      uses: peter-evans/dockerhub-description@v3
       with:
         username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_PASS }}
