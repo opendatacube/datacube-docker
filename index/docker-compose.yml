@@ -4,7 +4,7 @@ services:
   # Start docker container for PostgreSQL to mock RDS
   postgres:
     hostname: postgres
-    image: postgres:12.6-alpine
+    image: postgres:15-alpine
     ports:
       - "5434:5432"
     environment:
