@@ -64,7 +64,7 @@ jobs:
         echo "VERSION=$(cat index/version.txt).dev${{ github.run_id }}" >> $GITHUB_ENV
 
     - name: Build and Push unstable Docker Image from PR / Push to Master
-      uses: whoan/docker-build-with-cache-action@v4
+      uses: whoan/docker-build-with-cache-action@v8
       with:
         context: index
         image_name: ${{ env.IMAGE_NAME }}
