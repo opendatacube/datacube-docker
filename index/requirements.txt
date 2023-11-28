@@ -1,6 +1,8 @@
 
 datacube[performance,s3]
 aiobotocore[awscli,boto3]
+# No direct dependency, avoid CVE-2023-4908{1,2} in aiohttp 3.8.6.
+aiohttp>3.8.6
 odc-apps-dc-tools
 odc-apps-cloud
 pyyaml>=6.0.1
