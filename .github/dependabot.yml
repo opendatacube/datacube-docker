@@ -9,3 +9,8 @@ updates:
   groups:
     production-dependencies:
       dependency-type: production
+- package-ecosystem: docker
+  directory: "/"
+  schedule:
+    interval: "daily"
+  target-branch: "main"
