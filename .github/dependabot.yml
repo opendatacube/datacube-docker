@@ -10,7 +10,7 @@ updates:
     production-dependencies:
       dependency-type: production
 - package-ecosystem: docker
-  directory: "/"
+  directory: "/index"
   schedule:
     interval: "daily"
   target-branch: "main"
