@@ -15,4 +15,3 @@ Each project should have a docker-compose file that can be used to run and test 
 
 * [opendatacube/datacube-statistician](https://github.com/opendatacube/odc-stats/): Obsolete beyond 0.4.17 in this repo. The new location is [odc-stats/docker](https://github.com/opendatacube/odc-stats/tree/develop/docker)
 * [opendatacube/datacube-index](index/readme.md): A suite of tools to manage indexing into an Open Data Cube database
-
