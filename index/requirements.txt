@@ -1,6 +1,8 @@
 
 datacube[performance,s3]
 aiobotocore[awscli,boto3]
+#Azure indexing, just in case
+azure-storage-blob
 # No direct dependency, avoid CVE-2023-4908{1,2} in aiohttp 3.8.6.
 aiohttp>3.8.6
 odc-apps-dc-tools
@@ -12,6 +14,3 @@ urllib3>1.26.17
 --no-binary rasterio
 --no-binary fiona
 --no-binary shapely
-# why this won't compile
-# because gdal makes PROJ internal by changing symbol names
-# --no-binary pyproj
