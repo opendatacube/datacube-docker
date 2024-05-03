@@ -23,7 +23,7 @@ RUN apt-get update \
         lsb-release \
         # for shapely with --no-binary
         libgeos-dev \
-        postgresql-client-14 \
+        postgresql-client-16 \
     # Cleanup
     && apt-get autoclean \
     && apt-get autoremove \
