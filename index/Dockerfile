@@ -1,4 +1,4 @@
-FROM ghcr.io/osgeo/gdal:ubuntu-small-3.8.5
+FROM ghcr.io/osgeo/gdal:alpine-small-3.9.0
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LC_ALL=C.UTF-8 \
@@ -23,7 +23,7 @@ RUN apt-get update \
         lsb-release \
         # for shapely with --no-binary
         libgeos-dev \
-        postgresql-client-16 \
+        postgresql-client-16 \        
     # Cleanup
     && apt-get autoclean \
     && apt-get autoremove \
