@@ -32,6 +32,7 @@ RUN apt-get update \
 COPY requirements.txt constraints.txt version.txt /conf/
 
 RUN cat /conf/version.txt \
+  && pip --version \
   && pip install --no-cache-dir --upgrade pip \
   && pip install --no-cache-dir \
     -r /conf/requirements.txt \
