@@ -8,27 +8,26 @@ RUN apt-get update \
     && apt-get upgrade -y \
     # Developer convenience
     && apt-get install -y --no-install-recommends \
+        virtualenv \
+    && mkdir /virtualenv \
+    && virtualenv /virtualenv/python3.12 \
+    && source /virtualenv/python3.12/bin/activate \
+    && apt-get install -y --no-install-recommends \
         git \
         fish \
         wget \
         unzip \
         # Build tools\
         build-essential \
-        # virtual environment\
-        virtualenv \ 
+        python3-dev \
         # For Psycopg2
-        libpq-dev\
+        libpq-dev \
         # Yaml parsing speedup, I think
         libyaml-dev \
         lsb-release \
         # for shapely with --no-binary
         libgeos-dev \
         postgresql-client-16 \
-    && mkdir /virtualenv \
-    && virtualenv /virtualenv/python3.12 \
-    && /virtualenv/source /virtualenv/python3.12/bin/activate \
-    && apt-get install -y --no-install-recommends \
-        python3-dev \
     # Cleanup
     && apt-get autoclean \
     && apt-get autoremove \
