@@ -14,8 +14,8 @@ RUN apt-get update \
         unzip \
         # Build tools\
         build-essential \
-        python3-pip \
-        python3-dev \
+        # virtual environment\
+        virtualenv \ 
         # For Psycopg2
         libpq-dev\
         # Yaml parsing speedup, I think
@@ -23,7 +23,12 @@ RUN apt-get update \
         lsb-release \
         # for shapely with --no-binary
         libgeos-dev \
-        postgresql-client-16 \        
+        postgresql-client-16 \
+    && mkdir /virtualenv \
+    && virtualenv /virtualenv/python3.12 \
+    && source /virtualenv/python3.12/bin/activate \
+    && apt-get install -y --no-install-recommends \
+        python3-dev \
     # Cleanup
     && apt-get autoclean \
     && apt-get autoremove \
