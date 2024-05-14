@@ -11,7 +11,7 @@ RUN apt-get update \
         virtualenv \
     && mkdir /virtualenv \
     && virtualenv /virtualenv/python3.12 \
-    && source /virtualenv/python3.12/bin/activate \
+    && . /virtualenv/python3.12/bin/activate \
     && apt-get install -y --no-install-recommends \
         git \
         fish \
