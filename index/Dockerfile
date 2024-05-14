@@ -26,7 +26,7 @@ RUN apt-get update \
         postgresql-client-16 \
     && mkdir /virtualenv \
     && virtualenv /virtualenv/python3.12 \
-    && source /virtualenv/python3.12/bin/activate \
+    && /virtualenv/source /virtualenv/python3.12/bin/activate \
     && apt-get install -y --no-install-recommends \
         python3-dev \
     # Cleanup
