@@ -6,12 +6,13 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 RUN apt-get update \
     && apt-get upgrade -y \
-    # Developer convenience
+    # Python virt environment
     && apt-get install -y --no-install-recommends \
         virtualenv \
     && mkdir /virtualenv \
     && virtualenv /virtualenv/python3.12 \
     && . /virtualenv/python3.12/bin/activate \
+    # Developer convenience
     && apt-get install -y --no-install-recommends \
         git \
         fish \
@@ -36,7 +37,7 @@ RUN apt-get update \
 COPY requirements.txt constraints.txt version.txt /conf/
 
 RUN cat /conf/version.txt \
-  && pip --version \
+  && . /virtualenv/python3.12/bin/activate \
   && pip install --no-cache-dir --upgrade pip \
   && pip install --no-cache-dir \
     -r /conf/requirements.txt \
