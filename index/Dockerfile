@@ -34,10 +34,12 @@ RUN apt-get update \
     && apt-get autoremove \
     && rm -rf /var/lib/{apt,dpkg,cache,log}
 
+ENV VIRTUAL_ENV /virtualenv/python3.12
+ENV PATH /virtualenv/python3.12/bin:$PATH
+
 COPY requirements.txt constraints.txt version.txt /conf/
 
 RUN cat /conf/version.txt \
-  && . /virtualenv/python3.12/bin/activate \
   && pip install --no-cache-dir --upgrade pip \
   && pip install --no-cache-dir \
     -r /conf/requirements.txt \
