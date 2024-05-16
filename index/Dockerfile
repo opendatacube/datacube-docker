@@ -10,8 +10,8 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         virtualenv \
     && mkdir /virtualenv \
-    && virtualenv /virtualenv/python3.10 \
-    && . /virtualenv/python3.10/bin/activate \
+    && virtualenv /virtualenv/python3.12 \
+    && . /virtualenv/python3.12/bin/activate \
     # Developer convenience
     && apt-get install -y --no-install-recommends \
         git \
@@ -34,8 +34,8 @@ RUN apt-get update \
     && apt-get autoremove \
     && rm -rf /var/lib/{apt,dpkg,cache,log}
 
-ENV VIRTUAL_ENV /virtualenv/python3.10
-ENV PATH /virtualenv/python3.10/bin:$PATH
+ENV VIRTUAL_ENV /virtualenv/python3.12
+ENV PATH /virtualenv/python3.12/bin:$PATH
 
 COPY requirements.txt constraints.txt version.txt /conf/
 
