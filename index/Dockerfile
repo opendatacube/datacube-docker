@@ -1,4 +1,4 @@
-FROM ghcr.io/osgeo/gdal:ubuntu-small-3.8.5
+FROM ghcr.io/osgeo/gdal:ubuntu-small-3.9.0
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LC_ALL=C.UTF-8 \
@@ -6,6 +6,12 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 RUN apt-get update \
     && apt-get upgrade -y \
+    # Python virt environment
+    && apt-get install -y --no-install-recommends \
+        virtualenv \
+    && mkdir /virtualenv \
+    && virtualenv /virtualenv/python3.12 \
+    && . /virtualenv/python3.12/bin/activate \
     # Developer convenience
     && apt-get install -y --no-install-recommends \
         git \
@@ -14,20 +20,22 @@ RUN apt-get update \
         unzip \
         # Build tools\
         build-essential \
-        python3-pip \
         python3-dev \
         # For Psycopg2
-        libpq-dev\
+        libpq-dev \
         # Yaml parsing speedup, I think
         libyaml-dev \
         lsb-release \
         # for shapely with --no-binary
         libgeos-dev \
-        postgresql-client-14 \
+        postgresql-client-16 \
     # Cleanup
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/{apt,dpkg,cache,log}
+
+ENV VIRTUAL_ENV /virtualenv/python3.12
+ENV PATH /virtualenv/python3.12/bin:$PATH
 
 COPY requirements.txt constraints.txt version.txt /conf/
 
