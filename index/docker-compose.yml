@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   # Start docker container for PostgreSQL to mock RDS
   postgres:
