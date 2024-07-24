@@ -34,8 +34,8 @@ RUN apt-get update \
     && apt-get autoremove \
     && rm -rf /var/lib/{apt,dpkg,cache,log}
 
-ENV VIRTUAL_ENV /virtualenv/python3.12
-ENV PATH /virtualenv/python3.12/bin:$PATH
+ENV VIRTUAL_ENV=/virtualenv/python3.12 \
+    PATH=/virtualenv/python3.12/bin:$PATH
 
 COPY requirements.txt constraints.txt version.txt /conf/
 
