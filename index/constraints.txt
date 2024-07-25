@@ -13,7 +13,7 @@ affine==2.4.0
     #   datacube
     #   eodatasets3
     #   rasterio
-aiobotocore[awscli,boto3]==2.13.1
+aiobotocore==2.13.1
     # via
     #   -r requirements.txt
     #   odc-cloud
@@ -108,11 +108,11 @@ colorama==0.4.6
     # via awscli
 cryptography==43.0.0
     # via azure-storage-blob
-dask[array]==2024.7.1
+dask==2024.7.1
     # via
     #   datacube
     #   distributed
-datacube[performance,s3]==1.8.19
+datacube==1.8.19
     # via
     #   -r requirements.txt
     #   eodatasets3
@@ -201,7 +201,7 @@ odc-apps-cloud==0.2.3
     # via -r requirements.txt
 odc-apps-dc-tools==0.2.18
     # via -r requirements.txt
-odc-cloud[async]==0.2.5
+odc-cloud==0.2.5
     # via
     #   odc-apps-cloud
     #   odc-apps-dc-tools
@@ -236,7 +236,7 @@ pyproj==3.6.1
     # via
     #   datacube
     #   eodatasets3
-pystac[validation]==1.10.1
+pystac==1.10.1
     # via
     #   eodatasets3
     #   odc-apps-dc-tools
