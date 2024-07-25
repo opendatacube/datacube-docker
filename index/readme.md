@@ -15,10 +15,10 @@ To update this image, make any changes you need to `requirements.txt`, then run:
 pip-compile --upgrade --output-file constraints.txt requirements.txt
 ```
 
-To minimise version changes, update using the existing image:
+To minimise version changes, update using the existing image (from index folder):
 
 ```
-docker run -v $(pwd):/datacube-index/ -w /datacube-index -it opendatacube/datacube-index bash -c "pip install pip-tools && pip-compile --upgrade --output-file constraints.txt requirements.txt"
+docker run -v $(pwd):/datacube-index/ -w /datacube-index -it opendatacube/datacube-index bash -c "python3 -m pip install pip-tools && pip-compile --upgrade --output-file constraints.txt requirements.txt"
 ```
 
 
