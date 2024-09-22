@@ -18,7 +18,7 @@ pip-compile --upgrade --output-file constraints.txt --strip-extras requirements.
 To minimise version changes, update using the existing image (run from index folder):
 
 ```
-docker run -v $(pwd):/datacube-index/ -w /datacube-index -it opendatacube/datacube-index bash -c "python3 -m pip install pip-tools && pip-compile --upgrade --output-file constraints.txt --strip-extras requirements.txt"
+docker run --rm -v $(pwd):/datacube-index/ -w /datacube-index -it opendatacube/datacube-index bash -c "python3 -m pip install pip-tools && pip-compile --upgrade --output-file constraints.txt --strip-extras requirements.txt"
 ```
 
 
