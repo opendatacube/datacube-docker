@@ -1,0 +1,17 @@
+[project]
+name = "datacube-index"
+version = "0.1.0"
+description = "Installation project for datacube-index"
+requires-python = ">=3.12"
+dependencies = [
+    "datacube[performance,s3]",
+    "aiobotocore[awscli,boto3]",
+    # Azure indexing, just in case.
+    "azure-storage-blob",
+    "odc-apps-dc-tools",
+    "odc-apps-cloud",
+    "pyyaml>=6.0.1",
+    "rasterio>=1.4.2",
+    "fiona>=1.10.1",
+    "shapely>=2.0.6",
+]
