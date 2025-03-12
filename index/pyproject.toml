@@ -4,10 +4,12 @@ version = "0.1.0"
 description = "Installation project for datacube-index"
 requires-python = ">=3.12"
 dependencies = [
-    "datacube[performance,s3]",
+    "datacube[performance,postgres,s3]",
     "aiobotocore[awscli,boto3]",
     # Azure indexing, just in case.
     "azure-storage-blob",
+    # Compensate for missing odc-tools dependencies.
+    "importlib_resources>=6.0",
     "odc-apps-dc-tools",
     "odc-apps-cloud",
     "pyyaml>=6.0.1",
