@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM ghcr.io/osgeo/gdal:ubuntu-small-3.10.2 AS builder
 
-ARG UV=https://github.com/astral-sh/uv/releases/download/0.5.6/uv-x86_64-unknown-linux-gnu.tar.gz
+ARG UV=https://github.com/astral-sh/uv/releases/download/0.6.6/uv-x86_64-unknown-linux-gnu.tar.gz
 
 ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 \
@@ -36,7 +36,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 
 WORKDIR /build
 
-ADD --checksum=sha256:83521a07922e4ddff61b9204890a974e56ad9333f295690d3ddae931243ec3db --chown=root:root --chmod=644 --link $UV uv.tar.gz
+ADD --checksum=sha256:4c3426c4919d9f44633ab9884827fa1ad64ad8d993516d636eb955a3835c4a8c --chown=root:root --chmod=644 --link $UV uv.tar.gz
 
 RUN tar xf uv.tar.gz -C /usr/local/bin --strip-components=1 --no-same-owner
 
