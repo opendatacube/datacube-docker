@@ -47,7 +47,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Verify Changed files
-      uses: tj-actions/changed-files@v45
+      uses: tj-actions/changed-files@v46
       id: verify-changed-version
       with:
         files: |
