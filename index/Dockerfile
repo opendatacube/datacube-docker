@@ -74,7 +74,9 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 
 WORKDIR /conf
 
-COPY --from=builder --link --chown=ubuntu:ubuntu /app /app
+# Docker 28.x requires numeric uid/gid with --link when using
+# a non-default builder like the CI action does in this repository.
+COPY --from=builder --link --chown=1000:1000 /app /app
 COPY --from=builder --link /build/*.txt /conf/
 
 # Copy Datacube bootstrapping and other scripts
