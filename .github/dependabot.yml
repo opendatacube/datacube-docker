@@ -14,3 +14,8 @@ updates:
   schedule:
     interval: "daily"
   target-branch: "main"
+- package-ecosystem: "uv"
+  directory: "/index"
+  schedule:
+    interval: "daily"
+  target-branch: "main"
