@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM ghcr.io/osgeo/gdal:ubuntu-small-3.10.3 AS builder
 
-ARG UV=https://github.com/astral-sh/uv/releases/download/0.6.6/uv-x86_64-unknown-linux-gnu.tar.gz
+ARG UV=https://github.com/astral-sh/uv/releases/download/0.7.2/uv-x86_64-unknown-linux-gnu.tar.gz
 
 ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 \
