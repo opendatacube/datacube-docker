@@ -15,7 +15,7 @@ To update this image, run:
 uv lock -U
 ```
 
-(and update the version number to release!)
+(and update the version number in `version.txt` to release!)
 
 # Included commands
 

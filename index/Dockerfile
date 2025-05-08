@@ -36,7 +36,8 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 
 WORKDIR /build
 
-ADD --checksum=sha256:4c3426c4919d9f44633ab9884827fa1ad64ad8d993516d636eb955a3835c4a8c --chown=root:root --chmod=644 --link $UV uv.tar.gz
+ADD --checksum=sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 --chown=root:root --chmod=644 --link $UV uv.tar.gz
+
 
 RUN tar xf uv.tar.gz -C /usr/local/bin --strip-components=1 --no-same-owner
 
