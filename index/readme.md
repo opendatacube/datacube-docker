@@ -9,19 +9,13 @@ The Dockerfile is accessible from: https://github.com/opendatacube/datacube-dock
 
 ## How to create a new image with latest odc-tools
 
-To update this image, make any changes you need to `requirements.txt`, then run:
+To update this image, run:
 
 ```
-pip-compile --upgrade --output-file constraints.txt --strip-extras requirements.txt
+uv lock -U
 ```
 
-To minimise version changes, update using the existing image (run from index folder):
-
-```
-docker run --rm -v $(pwd):/datacube-index/ -w /datacube-index -it opendatacube/datacube-index bash -c "python3 -m pip install pip-tools && pip-compile --upgrade --output-file constraints.txt --strip-extras requirements.txt"
-```
-
-
+(and update the version number in `version.txt` to release!)
 
 # Included commands
 
