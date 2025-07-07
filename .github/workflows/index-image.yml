@@ -39,6 +39,7 @@ jobs:
         make test-indexing
 
   push:
+    permissions: write-all
     if: github.ref == 'refs/heads/main'
     needs: test
     runs-on: ubuntu-latest
@@ -80,3 +81,15 @@ jobs:
         repository: ${{ env.IMAGE_NAME }}
         readme-filepath: ./index/readme.md
         short-description: Open Data Cube Indexing Image
+
+    # Push to the GitHub Container Registry too
+    - name: Push to GHCR
+      uses: whoan/docker-build-with-cache-action@v8
+      with:
+        context: index
+        registry: docker.pkg.github.com
+        image_name: ghcr.io/${{ env.IMAGE_NAME }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        image_tag: latest,${{ env.VERSION }}
+  
