@@ -87,7 +87,6 @@ jobs:
       uses: whoan/docker-build-with-cache-action@v8
       with:
         context: index
-        registry: docker.pkg.github.com
         image_name: ghcr.io/${{ env.IMAGE_NAME }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
