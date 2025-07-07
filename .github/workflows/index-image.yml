@@ -83,6 +83,12 @@ jobs:
         short-description: Open Data Cube Indexing Image
 
     # Push to the GitHub Container Registry too
+    - name: Log in to the Container registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Push to GHCR
       uses: whoan/docker-build-with-cache-action@v8
       with:
