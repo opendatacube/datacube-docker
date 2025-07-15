@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: Run Dockerized Bootstrapping from Git
       timeout-minutes: 20
@@ -45,10 +45,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: Verify Changed files
-      uses: tj-actions/changed-files@v46
+      uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c # v46.0.5
       id: verify-changed-version
       with:
         files: |
@@ -65,7 +65,7 @@ jobs:
         echo "VERSION=$(cat index/version.txt).dev${{ github.run_id }}" >> $GITHUB_ENV
 
     - name: Build and Push unstable Docker Image from PR / Push to Master
-      uses: whoan/docker-build-with-cache-action@v8
+      uses: whoan/docker-build-with-cache-action@d8d3ad518e7ac382b880720d0751815e656fe032 # v8.1.0
       with:
         context: index
         image_name: ${{ env.IMAGE_NAME }}
@@ -74,7 +74,7 @@ jobs:
         image_tag: latest,${{ env.VERSION }}
 
     - name: Update Docker Hub Description
-      uses: peter-evans/dockerhub-description@v4
+      uses: peter-evans/dockerhub-description@432a30c9e07499fd01da9f8a49f0faf9e0ca5b77 # v4.0.2
       with:
         username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_PASS }}
@@ -84,7 +84,7 @@ jobs:
 
     # Push to the GitHub Container Registry too
     - name: Push to GHCR
-      uses: whoan/docker-build-with-cache-action@v8
+      uses: whoan/docker-build-with-cache-action@d8d3ad518e7ac382b880720d0751815e656fe032 # v8.1.0
       with:
         context: index
         registry: ghcr.io
@@ -92,4 +92,4 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         image_tag: latest,${{ env.VERSION }}
-  
+
