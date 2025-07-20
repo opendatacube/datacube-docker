@@ -3,7 +3,7 @@
 # Echo lines and fail fast
 set -ex
 
-docker compose up -d
+docker compose up -d --quiet-pull
 
 # This workflow is soooo flaky. External data dependencies have broken it!
 docker compose run --user ubuntu index bash -c "cd \$HOME && /code/bootstrap-odc.sh \$PRODUCT_CATALOG \$METADATA_CATALOG" || \

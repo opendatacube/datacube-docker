@@ -12,7 +12,7 @@ make build:
 	docker compose build
 
 up:
-	docker compose up
+	docker compose up --quiet-pull
 
 down:
 	docker compose down

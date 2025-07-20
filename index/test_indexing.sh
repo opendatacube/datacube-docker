@@ -3,7 +3,7 @@
 # Echo lines and fail fast
 set -ex
 
-docker compose up -d
+docker compose up -d --quiet-pull
 docker compose exec --user ubuntu -T index datacube system init
 docker compose exec --user ubuntu -T index datacube system check
 echo "Checking InSAR indexing"
