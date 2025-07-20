@@ -39,10 +39,13 @@ jobs:
         make test-indexing
 
   push:
-    permissions: write-all
     if: github.ref == 'refs/heads/main'
     needs: test
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # This is required for requesting the JWT
+      packages: write  # This is required for pushing to ghcr
+      attestations: write # This is required for pushing the attestation
     steps:
     - name: Checkout code
       uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
@@ -64,32 +67,33 @@ jobs:
       run: |
         echo "VERSION=$(cat index/version.txt).dev${{ github.run_id }}" >> $GITHUB_ENV
 
-    - name: Build and Push unstable Docker Image from PR / Push to Master
-      uses: whoan/docker-build-with-cache-action@d8d3ad518e7ac382b880720d0751815e656fe032 # v8.1.0
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
       with:
-        context: index
-        image_name: ${{ env.IMAGE_NAME }}
-        username: ${{ secrets.DOCKER_USER }}
-        password: ${{ secrets.DOCKER_PASS }}
-        image_tag: latest,${{ env.VERSION }}
-
-    - name: Update Docker Hub Description
-      uses: peter-evans/dockerhub-description@1b9a80c056b620d92cedb9d9b5a223409c68ddfa # v5.0.0
-      with:
-        username: ${{ secrets.DOCKER_USER }}
-        password: ${{ secrets.DOCKER_PASS }}
-        repository: ${{ env.IMAGE_NAME }}
-        readme-filepath: ./index/readme.md
-        short-description: Open Data Cube Indexing Image
-
-    # Push to the GitHub Container Registry too
-    - name: Push to GHCR
-      uses: whoan/docker-build-with-cache-action@d8d3ad518e7ac382b880720d0751815e656fe032 # v8.1.0
-      with:
-        context: index
         registry: ghcr.io
-        image_name: ${{ env.IMAGE_NAME }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        image_tag: latest,${{ env.VERSION }}
 
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # v3.11.1
+
+    # Push to both Dockerhub and GitHub Container Registry
+    - name: Build Docker
+      id: push
+      uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
+      with:
+        context: "{{defaultContext}}:index"
+        push: true
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        tags: |
+          ghcr.io/${{ env.IMAGE_NAME }}:latest
+          ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+
+    - name: Attest Docker image
+      uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
+      id: attest
+      with:
+        subject-name: ghcr.io/${{ env.IMAGE_NAME }}
+        subject-digest: ${{ steps.push.outputs.digest }}
+        push-to-registry: true
