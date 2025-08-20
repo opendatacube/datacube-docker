@@ -8,10 +8,7 @@ dependencies = [
     "aiobotocore[awscli,boto3]",
     # Azure indexing, just in case.
     "azure-storage-blob",
-    # Compensate for missing odc-tools dependencies.
-    "importlib_resources>=6.0",
     "odc-apps-dc-tools",
-    "odc-apps-cloud",
     "pyyaml>=6.0.1",
     "rasterio>=1.4.2",
     "fiona>=1.10.1",
