@@ -1,7 +1,9 @@
 # syntax=docker/dockerfile:1
 FROM ghcr.io/astral-sh/uv:0.9.5@sha256:f459f6f73a8c4ef5d69f4e6fbbdb8af751d6fa40ec34b39a1ab469acd6e289b7 AS uv
 
-FROM ghcr.io/osgeo/gdal:ubuntu-small-3.10.3 AS builder
+FROM ghcr.io/osgeo/gdal:ubuntu-small-3.10.3@sha256:dab45abca3ca83695d442018692f4f8a0f41955871c57e6101d7f89a92375caa AS base
+
+FROM base AS builder
 
 ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 \
@@ -48,7 +50,7 @@ RUN --mount=type=cache,id=opendatacube-uv-cache,target=/root/.cache \
       --no-binary-package rasterio \
       --no-binary-package shapely
 
-FROM ghcr.io/osgeo/gdal:ubuntu-small-3.10.3
+FROM base
 
 ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 \
