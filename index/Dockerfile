@@ -3,6 +3,10 @@ FROM ghcr.io/astral-sh/uv:0.9.14@sha256:fef8e5fb8809f4b57069e919ffcd1529c92b432a
 
 FROM ghcr.io/osgeo/gdal:ubuntu-small-3.10.3@sha256:dab45abca3ca83695d442018692f4f8a0f41955871c57e6101d7f89a92375caa AS base
 
+RUN rm -f /etc/apt/apt.conf.d/docker-clean && \
+    echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' > /etc/apt/apt.conf.d/keep-cache && \
+    echo 'Acquire::Retries "10";' > /etc/apt/apt.conf.d/80-retries
+
 FROM base AS builder
 
 ENV LC_ALL=C.UTF-8 \
@@ -15,7 +19,9 @@ ENV LC_ALL=C.UTF-8 \
     UV_PYTHON=python3.12 \
     UV_PROJECT_ENVIRONMENT=/app
 
-RUN export DEBIAN_FRONTEND=noninteractive \
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    export DEBIAN_FRONTEND=noninteractive \
     && apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
@@ -30,11 +36,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
         libyaml-dev \
         lsb-release \
         # for shapely with --no-binary
-        libgeos-dev \
-    # Cleanup
-    && apt-get autoclean \
-    && apt-get autoremove \
-    && rm -rf /var/lib/{apt,dpkg,cache,log}
+        libgeos-dev
 
 WORKDIR /build
 
@@ -60,7 +62,9 @@ ENV LC_ALL=C.UTF-8 \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
-RUN export DEBIAN_FRONTEND=noninteractive \
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    export DEBIAN_FRONTEND=noninteractive \
     && apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
@@ -68,11 +72,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
         # For Psycopg2
         libpq5 \
         lsb-release \
-        postgresql-client-16 \
-    # Cleanup
-    && apt-get autoclean \
-    && apt-get autoremove \
-    && rm -rf /var/lib/{apt,dpkg,cache,log}
+        postgresql-client-16
 
 WORKDIR /conf
 
