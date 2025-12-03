@@ -47,6 +47,8 @@ COPY --link pyproject.toml version.txt uv.lock /build/
 RUN --mount=type=cache,id=opendatacube-uv-cache,target=/root/.cache \
     uv sync --locked --no-dev --no-install-project \
       --no-binary-package fiona \
+      --no-binary-package psycopg \
+      --no-binary-package psycopg2 \
       --no-binary-package rasterio \
       --no-binary-package shapely
 
