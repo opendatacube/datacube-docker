@@ -9,6 +9,8 @@ updates:
   groups:
     production-dependencies:
       dependency-type: production
+  cooldown:
+    default-days: 10
 - package-ecosystem: docker
   directory: "/index"
   schedule:
