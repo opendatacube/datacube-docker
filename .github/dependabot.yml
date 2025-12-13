@@ -4,11 +4,13 @@ updates:
   # Workflow files stored in the default location of `.github/workflows`
   directory: "/"
   schedule:
-    interval: "daily"
+    interval: "weekly"
   target-branch: "main"
   groups:
     production-dependencies:
       dependency-type: production
+  cooldown:
+    default-days: 10
 - package-ecosystem: docker
   directory: "/index"
   schedule:
