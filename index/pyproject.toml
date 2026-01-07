@@ -5,9 +5,11 @@ description = "Installation project for datacube-index"
 requires-python = ">=3.12"
 dependencies = [
     "datacube[performance,postgres,s3]",
-    "aiobotocore[awscli,boto3]",
+    "aiobotocore",
+    "awscli",
     # Azure indexing, just in case.
     "azure-storage-blob",
+    "boto3",
     "odc-apps-dc-tools",
     "psycopg[c]",
     "pyyaml>=6.0.1",
