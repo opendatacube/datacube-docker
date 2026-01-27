@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Installation project for datacube-index"
 requires-python = ">=3.12"
 dependencies = [
-    "datacube[performance,postgres,s3]",
+    "datacube[performance,postgres,s3]>=1.9.13",
     "aiobotocore",
     "awscli",
     # Azure indexing, just in case.
