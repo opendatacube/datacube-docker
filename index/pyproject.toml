@@ -13,7 +13,7 @@ dependencies = [
     "odc-apps-dc-tools",
     "psycopg[c]",
     "pyyaml>=6.0.1",
-    "rasterio>=1.4.2",
+    "rasterio>=1.5.0",
     "fiona>=1.10.1",
     "shapely>=2.0.6",
 ]
