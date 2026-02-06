@@ -19,5 +19,8 @@ updates:
 - package-ecosystem: "uv"
   directory: "/index"
   schedule:
-    interval: "daily"
-  target-branch: "main"
+    interval: "weekly"
+  groups:
+    uv-deps:
+      patterns:
+        - "*"
