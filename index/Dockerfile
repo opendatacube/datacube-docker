@@ -13,11 +13,12 @@ ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    UV_LINK_MODE=copy \
     UV_COMPILE_BYTECODE=0 \
+    UV_HTTP_RETRIES=10 \
+    UV_LINK_MODE=copy \
+    UV_PROJECT_ENVIRONMENT=/app \
     UV_PYTHON_DOWNLOADS=never \
-    UV_PYTHON=python3.12 \
-    UV_PROJECT_ENVIRONMENT=/app
+    UV_PYTHON=python3.12
 
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
