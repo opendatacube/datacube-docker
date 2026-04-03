@@ -691,14 +691,10 @@ dependencies = [
     { name = "aiobotocore" },
     { name = "awscli" },
     { name = "azure-storage-blob" },
-    { name = "boto3" },
     { name = "datacube", extra = ["performance", "postgres", "s3"] },
     { name = "fiona" },
     { name = "odc-apps-dc-tools" },
     { name = "psycopg", extra = ["c"] },
-    { name = "pyyaml" },
-    { name = "rasterio" },
-    { name = "shapely" },
 ]
 
 [package.metadata]
@@ -706,14 +702,10 @@ requires-dist = [
     { name = "aiobotocore" },
     { name = "awscli" },
     { name = "azure-storage-blob" },
-    { name = "boto3" },
     { name = "datacube", extras = ["performance", "postgres", "s3"], specifier = ">=1.9.13" },
     { name = "fiona", specifier = ">=1.10.1" },
     { name = "odc-apps-dc-tools" },
     { name = "psycopg", extras = ["c"] },
-    { name = "pyyaml", specifier = ">=6.0.1" },
-    { name = "rasterio", specifier = ">=1.5.0" },
-    { name = "shapely", specifier = ">=2.0.6" },
 ]
 
 [[package]]
