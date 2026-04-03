@@ -9,6 +9,8 @@ dependencies = [
     "awscli",
     # Azure indexing, just in case.
     "azure-storage-blob",
+    # For running datacube-ows-update after s3-to-dc.
+    "datacube-ows",
     "odc-apps-dc-tools",
     "psycopg[c]",
     # FIXME: comment why fiona is included here.
