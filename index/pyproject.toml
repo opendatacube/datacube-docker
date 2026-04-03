@@ -9,11 +9,8 @@ dependencies = [
     "awscli",
     # Azure indexing, just in case.
     "azure-storage-blob",
-    "boto3",
     "odc-apps-dc-tools",
     "psycopg[c]",
-    "pyyaml>=6.0.1",
-    "rasterio>=1.5.0",
+    # FIXME: comment why fiona is included here.
     "fiona>=1.10.1",
-    "shapely>=2.0.6",
 ]
