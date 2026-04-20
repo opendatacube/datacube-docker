@@ -699,7 +699,7 @@ requires-dist = [
     { name = "aiobotocore" },
     { name = "awscli" },
     { name = "azure-storage-blob" },
-    { name = "datacube", extras = ["performance", "postgres", "s3"], specifier = ">=1.9.13" },
+    { name = "datacube", extras = ["performance", "postgres", "s3"], specifier = ">=1.9.18" },
     { name = "datacube-ows" },
     { name = "fiona", specifier = ">=1.10.1" },
     { name = "odc-apps-dc-tools" },
