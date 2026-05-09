@@ -70,6 +70,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     && apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
+        curl \
         unzip \
         # For Psycopg2
         libpq5 \
