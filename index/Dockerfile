@@ -18,7 +18,7 @@ ENV LC_ALL=C.UTF-8 \
     UV_LINK_MODE=copy \
     UV_PROJECT_ENVIRONMENT=/app \
     UV_PYTHON_DOWNLOADS=never \
-    UV_PYTHON=python3.12
+    UV_PYTHON=python3.14
 
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
