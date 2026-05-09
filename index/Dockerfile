@@ -74,7 +74,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         # For Psycopg2
         libpq5 \
         lsb-release \
-        postgresql-client-16
+        postgresql-client-18
 
 WORKDIR /conf
 
