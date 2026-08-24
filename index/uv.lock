@@ -219,19 +219,20 @@ wheels = [
 
 [[package]]
 name = "awscli"
-version = "1.45.28"
+version = "1.46.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "botocore" },
     { name = "colorama" },
     { name = "docutils" },
+    { name = "jmespath" },
+    { name = "python-dateutil" },
     { name = "pyyaml" },
     { name = "rsa" },
-    { name = "s3transfer" },
+    { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/0e/32/68ff637efdba82e49fd12ddc068fc19edd7f6b4b3ee5bb5976379daaeb25/awscli-1.45.28.tar.gz", hash = "sha256:50e788ed5dc17eb916fd1b9c74d581e4b6a86147c0e60b8b2d25b60ceb32d458", size = 1896334, upload-time = "2026-06-11T19:28:58.014Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d9/d7/74b718d668537d85ecef9f908f951827a95f7b1eb32f254bf3b1813edf9e/awscli-1.46.0.tar.gz", hash = "sha256:5c1bd660bd3f967f5754a2267fb54e81edf379374faa27973671561888d39bf6", size = 16777783, upload-time = "2026-08-05T05:23:24.302Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/32/41/d9a71dfafd7670e7a79fa4a0d9f073ebbecd33ff4d498f0715d39e4a4464/awscli-1.45.28-py3-none-any.whl", hash = "sha256:783a45041e364c1be9640f730cbcc18313767c592f555477cf0911b1c9511455", size = 4648370, upload-time = "2026-06-11T19:28:54.876Z" },
+    { url = "https://files.pythonhosted.org/packages/e1/13/775b5b79cb686dc9f9133f1f73079102e312866500556c1b604f72e7b68b/awscli-1.46.0-py3-none-any.whl", hash = "sha256:0aa98754c23c7eff4c7d970cb619670dc9b0214ee451bb3fe88e74e4a9a03a90", size = 20231511, upload-time = "2026-08-05T05:23:20.803Z" },
 ]
 
 [[package]]
@@ -249,7 +250,7 @@ wheels = [
 
 [[package]]
 name = "azure-storage-blob"
-version = "12.29.0"
+version = "12.30.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "azure-core" },
@@ -257,9 +258,9 @@ dependencies = [
     { name = "isodate" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/59/25/fdcf1e381922dbab8ba23d6fd78d397fe6cbac6b480310218834b7bc91fe/azure_storage_blob-12.29.0.tar.gz", hash = "sha256:2824ddd7ebc9056034ebc76b17971a38e9aa5835abb0d565b9700493f2a6c657", size = 611359, upload-time = "2026-05-15T03:34:59.865Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/3b/48/84a820d898267f662b5c06f7cd76fdb8a9e272b44aa9376cef3ec0f6a294/azure_storage_blob-12.30.0.tar.gz", hash = "sha256:2cd74d4d5731e5eb6b8d5c5056ee115a5e88f8fdf22517b739836fda685018be", size = 618229, upload-time = "2026-06-08T11:45:35.575Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c2/2c/6ddee6a3e42d0236ba9259e4df7fa97fdc415ff0802b736c634baaf4b285/azure_storage_blob-12.29.0-py3-none-any.whl", hash = "sha256:ccf8a1bcd5e49df83ab85aab793b579e5ba2eeea2ad8900b2f62ca3a37dc391f", size = 434823, upload-time = "2026-05-15T03:35:01.837Z" },
+    { url = "https://files.pythonhosted.org/packages/5e/0b/e106f0fd7fa785867d9ffcc47dc9e6237c0e58f51058473b777487a98edc/azure_storage_blob-12.30.0-py3-none-any.whl", hash = "sha256:d415ac50b67a8da6b3ae7e9f1014b1b55cd7aafa0b8d4ca9b380568dc7360423", size = 435610, upload-time = "2026-06-08T11:45:37.213Z" },
 ]
 
 [[package]]
@@ -720,7 +721,7 @@ requires-dist = [
 
 [[package]]
 name = "datacube-ows"
-version = "1.9.13"
+version = "1.9.15"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "affine" },
@@ -744,9 +745,9 @@ dependencies = [
     { name = "urllib3" },
     { name = "xarray" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/bb/7a/c53a3aa40e1b036f51e3a8e0fe4dc181e54cad83f78c7c69accbcb08c2b0/datacube_ows-1.9.13.tar.gz", hash = "sha256:10e869767e34678ee09057ac3af835c4ce9f8e70902397e26075b93cf87fb330", size = 728253, upload-time = "2026-04-24T01:52:36.064Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/11/ad/6c4b8f5d3f12a1a18c0cfd8845c27bbcc3bf3e544177db23d0b8607f585a/datacube_ows-1.9.15.tar.gz", hash = "sha256:7be5263f1aac5d2c4d74d1d4771ec0f7265bc138eb03108225e44b0d9a4358cf", size = 705073, upload-time = "2026-07-01T04:31:17.08Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f5/ca/f5223c82abd2f21d13c07e6b3e98faa74722741ba143713ab2c50453f1ed/datacube_ows-1.9.13-py3-none-any.whl", hash = "sha256:ded560ad36f49dda8ff9af7cdddc9c54e6f06b68ca6a4bf09af776513dbfa75a", size = 215698, upload-time = "2026-04-24T01:52:34.09Z" },
+    { url = "https://files.pythonhosted.org/packages/fa/9d/7f926b51d6861e7db9fb98bed318356bdb38e865b20537f0e871a1d2ee20/datacube_ows-1.9.15-py3-none-any.whl", hash = "sha256:480ee780bca1e389be071609123d601ef83bd85a34bd2009682f8bf169f27036", size = 217003, upload-time = "2026-07-01T04:31:15.373Z" },
 ]
 
 [[package]]
