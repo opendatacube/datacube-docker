@@ -721,7 +721,7 @@ requires-dist = [
 
 [[package]]
 name = "datacube-ows"
-version = "1.9.16"
+version = "1.9.18"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "affine" },
@@ -746,9 +746,9 @@ dependencies = [
     { name = "urllib3" },
     { name = "xarray" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c6/bb/8ef01e4a39f9d99012a9a4aac8e0836227355db95cbae3efba60261e96cf/datacube_ows-1.9.16.tar.gz", hash = "sha256:86ab9752d55098155b3f3e1d0d9dc8a89dccfbce68171b1be4f3bc021177aae9", size = 759444, upload-time = "2026-10-09T04:43:55.483Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/fa/c6/838a2bf45c4004a45aa386a8d1627138240ba442a7445606f88f66d73895/datacube_ows-1.9.18.tar.gz", hash = "sha256:99cc4de3f35141a309e178eba0d13c84be2ea18684d5c613d7d410acfbab97e4", size = 760932, upload-time = "2026-10-16T00:10:44.277Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0c/9e/19a38d809fa2a34e8bde2e027be870a765bde17af5a65a4f950da51a7612/datacube_ows-1.9.16-py3-none-any.whl", hash = "sha256:1d05648bbac98683725eaa690bcf4b9799d7fa86499a3912a60b0197bbaa012c", size = 217166, upload-time = "2026-10-09T04:43:53.807Z" },
+    { url = "https://files.pythonhosted.org/packages/0f/33/4811fb39861b935c1e5fb17dbdd6c30c9ccc4ee16ce1366185fbce08bb8e/datacube_ows-1.9.18-py3-none-any.whl", hash = "sha256:ca620780c36e8609e9a9da37f4d2eaf9bfb2d6545911090b6640d1536ea91ccd", size = 217279, upload-time = "2026-10-16T00:10:42.283Z" },
 ]
 
 [[package]]
