@@ -1,16 +1,15 @@
 [project]
 name = "datacube-index"
-version = "0.1.0"
 description = "Installation project for datacube-index"
 requires-python = ">=3.12"
 dependencies = [
-    "datacube[performance,postgres,s3]>=1.9.18",
+    "datacube[performance,postgres,s3]>=1.9.22",
     "aiobotocore",
     "awscli",
     # Azure indexing, just in case.
     "azure-storage-blob",
     # For running datacube-ows-update after s3-to-dc.
-    "datacube-ows",
+    "datacube-ows>=1.9.19",
     "odc-apps-dc-tools",
     "psycopg[c]",
     # FIXME: comment why fiona is included here.
